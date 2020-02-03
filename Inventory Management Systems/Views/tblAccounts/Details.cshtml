@@ -1,0 +1,74 @@
+﻿@model Inventory_Management_Systems.Models.tblAccount
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblAccount</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TblAccountHead.accountHeadName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblAccountHead.accountHeadName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.accountCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accountCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.accountTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accountTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.accountId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,96 @@
+﻿@model Inventory_Management_Systems.Models.tblItem
+
+@{
+    ViewBag.Title = "Create";
+}
+<br/><br /><br />
+<h2 style="text-align:center;">Add New Product Detail</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+   
+    @Html.ActionLink(" Edit", "Index", "tblItems", new { @class = "fas fa-edit btn btn-primary btn-Normal " })
+    <input type="submit" value=" Save" class="fas fa-save btn btn-success btn-Normal " />
+    @Html.ActionLink("Detail", "Index", "tblItems", new { @class = "btn btn-info btn-Normal" })
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="container" style="align-content:center;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.catId, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
+                  
+                        @Html.DropDownList("catId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.catId, "", new { @class = "text-danger" })
+                  
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                   <label>Product Name</label>
+                  
+                        @Html.EditorFor(model => model.itemName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.itemName, "", new { @class = "text-danger" })
+                    
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UnitId, "Unit", htmlAttributes: new { @class = "control-label col-md-2" })
+                    
+                        @Html.DropDownList("UnitId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UnitId, "", new { @class = "text-danger" })
+                    
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Product Code</label>
+
+                    @Html.EditorFor(model => model.ItemCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ItemCode, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Purchase Price</label>
+                    @Html.EditorFor(model => model.purchase_Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.purchase_Price, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sale_Price, "Sale Price", htmlAttributes: new { @class = "control-label col-md-2" })
+                   
+                        @Html.EditorFor(model => model.sale_Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sale_Price, "", new { @class = "text-danger" })
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        }
+
+       
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

@@ -1,0 +1,88 @@
+﻿@model Inventory_Management_Systems.Models.tblInvoice
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tblInvoice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TblAccount.accountTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblAccount.accountTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.invoice_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.invoice_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Invoice_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.payment_Mode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.payment_Mode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.invoice_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.invoice_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

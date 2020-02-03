@@ -1,0 +1,66 @@
+﻿@model Inventory_Management_Systems.Models.tblVoucher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblVoucher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TblInvoice.invoice_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblInvoice.invoice_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.voucherCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.voucherCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.voucherDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.voucherDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.voucher_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.voucher_Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.voucherId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

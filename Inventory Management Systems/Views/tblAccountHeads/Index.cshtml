@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Inventory_Management_Systems.Models.tblAccountHead>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.accountHeadName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.account_Head_Code)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountHeadName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.account_Head_Code)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.accountHeadId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.accountHeadId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.accountHeadId })
+        </td>
+    </tr>
+}
+
+</table>

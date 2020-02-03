@@ -1,0 +1,82 @@
+﻿@model Inventory_Management_Systems.Models.tblInvoice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblInvoice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TblAccount.accountTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblAccount.accountTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.invoice_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.invoice_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Invoice_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.payment_Mode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.payment_Mode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.invoice_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.invoice_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.invoiceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

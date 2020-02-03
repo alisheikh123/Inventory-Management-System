@@ -1,0 +1,66 @@
+﻿@model Inventory_Management_Systems.Models.tblItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.category.catName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.catName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.unitName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit.unitName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.itemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purchase_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sale_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sale_Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.itemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

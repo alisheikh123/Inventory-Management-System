@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Inventory_Management_Systems.Models.tblInvoice>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TblAccount.accountTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.invoice_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Invoice_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.payment_Mode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.invoice_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TblAccount.accountTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.invoice_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Invoice_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.payment_Mode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.invoice_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created_Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.invoiceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.invoiceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.invoiceId })
+        </td>
+    </tr>
+}
+
+</table>

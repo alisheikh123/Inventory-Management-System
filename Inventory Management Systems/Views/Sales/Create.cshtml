@@ -1,0 +1,120 @@
+﻿@model Inventory_Management_Systems.Models.Sale
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+    <div class="row col-lg-12" style="background-color:#343a40;border-radius:20px;">
+        <div class="col-md-5" style="color:white;line-height:55px;font-size:30px;">Sale</div>
+        <div class="col-md-5"></div>
+        <div class="col-md-2" style="line-height:55px;color:aliceblue"><i class="fas fa-arrow-left"></i> @Html.ActionLink("Back to List", "Index",null, htmlAttributes: new { @style="color:white;"})</div>
+    </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal row">
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="col-lg-4">
+        <div class="form-group">
+            Product Name
+            <div class="col-md-10">
+                @Html.DropDownList("unit", null, htmlAttributes: new { @class = "form-control" })
+              
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="form-group">
+            Customer Name
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.customerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.customerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-4">
+        <div class="form-group">
+            Current Date
+            <div class="col-md-10">
+        
+                @Html.EditorFor(model => model.current_Date, new { htmlAttributes = new { @class = "form-control", @Value =  ViewBag.currentDate} })
+                @Html.ValidationMessageFor(model => model.current_Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            Discount
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.discount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.discount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            Address
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="form-group">
+            Phone Number
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-lg-4">
+        <div class="form-group">
+            Price
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="form-group">
+            Total Price
+            <div class="col-md-10">
+                @Html.TextBox("Total Price", " ", new { htmlAttributes = new { @class = "form-control" } })
+               
+            </div>
+        </div>
+    </div>
+</div>
+       
+     
+        }
+
+        <div>
+
+        </div>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

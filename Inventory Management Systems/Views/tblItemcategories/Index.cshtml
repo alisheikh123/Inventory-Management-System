@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Inventory_Management_Systems.Models.tblItemcategory>
+
+@{
+    ViewBag.Title = "All Categories";
+}
+
+<h4 style="margin-top:50px;">All Products Category </h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "", new { @class="btn btn-success btn-xs"})
+</p>
+<table class="table  table-bordered table-condensed table-hover table-striped"  >
+    <tr>
+        <th>
+           Category Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.catDesc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           @Html.DisplayFor(modelItem=>item.catName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.catDesc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.catId },new { @class="btn btn-default btn-xs"}) |
+            @Html.ActionLink("Details", "Details", new { id=item.catId },new { @class="btn btn-info btn-xs"}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.catId },new { @class="btn btn-danger btn-xs"})
+        </td>
+    </tr>
+}
+
+</table>

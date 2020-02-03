@@ -1,0 +1,58 @@
+﻿@model Inventory_Management_Systems.Models.tblInvoiceDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblInvoiceDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TblInvoice.invoice_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblInvoice.invoice_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TblItem.ItemCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TblItem.ItemCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.invoiceDetailId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
