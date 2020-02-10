@@ -14,115 +14,26 @@
 
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>tblInvoice</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.tblInvoices.Select(x=>x.invoice_Code), htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tblInvoices.Select(x => x.invoice_Code), new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.InvoiceCode } })
-                @Html.ValidationMessageFor(model => model.tblInvoices.Select(x => x.invoice_Code), "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.tblInvoices.Select(x => x.Invoice_type), htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.tblInvoices.Select(x => x.Invoice_type), htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.tblInvoices.Select(x => x.Invoice_type), "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.payment_Mode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.payment_Mode, "Select--", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.payment_Mode, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.accountId, "accountId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("accountId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.accountId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.customerName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.customerName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.customerName, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<form action="~/Home/Submit" method="post" class="form-control">
+<form action="~/Home/Submit" method="post" class="form-control">
         <div class="row ">
             <div class=" col-md-12">
                 <div class="col-md-4" style="display:inline-block">
                     <label>Invoice Code:</label>
-                    <input type="text" name="invoiceCode" />
+                   
+                        @foreach (var acc in Model.tblInvoices)
+                        {
+                 
+                            <input type="text" name="invoiceCode" value="@acc.invoice_Code" /> 
+                       
+                        }
+            
+                  
                 </div>
                 <div class=" col-md-4" style="float:right">
                     <label>Invoice Type:</label>
@@ -173,40 +84,11 @@
 
             </div>
         </div>
-    </form>*@
+    </form>
 
 
-<h4>List of Accounts</h4>
-<ul>
-    @foreach (var acc in Model.tblAccounts)
-    {
-        <li>
-            @acc.accountTitle;
-        </li>
-    }
-</ul>
 
-<h4>List of Item</h4>
-<ul>
-    @foreach (var acc in Model.tblItems)
-    {
-        <li>
-            @acc.itemName;
-        </li>
-    }
-</ul>
-<h4>List of Invoice detail</h4>
-<ul>
-    @foreach (var acc in Model.tblInvoiceDetails)
-    {
-        <li>
-            @acc.price;
-        </li>
-        <li>
-            @acc.Quantity;
-        </li>
-    }
-</ul>
+
 
 
 

@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
@@ -210,8 +211,13 @@
     <Compile Include="Migrations\202002021103292_updateINVOICETABLE.Designer.cs">
       <DependentUpon>202002021103292_updateINVOICETABLE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002101752258_199.cs" />
+    <Compile Include="Migrations\202002101752258_199.Designer.cs">
+      <DependentUpon>202002101752258_199.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Sale.cs" />
@@ -3501,6 +3507,11 @@
     <Content Include="Views\tblInvoices\Details.cshtml" />
     <Content Include="Views\tblInvoices\Edit.cshtml" />
     <Content Include="Views\tblInvoices\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3526,6 +3537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002021103292_updateINVOICETABLE.resx">
       <DependentUpon>202002021103292_updateINVOICETABLE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002101752258_199.resx">
+      <DependentUpon>202002101752258_199.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
