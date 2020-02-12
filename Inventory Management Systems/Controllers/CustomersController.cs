@@ -20,6 +20,7 @@ namespace Inventory_Management_Systems.Controllers
             return View(db.Customers.ToList());
         }
 
+       
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
@@ -50,10 +51,19 @@ namespace Inventory_Management_Systems.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                var customerCode = db.Customers.Where(x => x.CustomerCode == customer.CustomerCode).Count();
+
+                if (customerCode > 0)
+                {
+                    ModelState.AddModelError("customerCode", "Course Code Already Exist");
+                }
+                else
+                {
+                    db.Customers.Add(customer);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                }
 
             return View(customer);
         }

@@ -7,11 +7,11 @@
 
 
 <p>
-    <input type="button" class="btn btn-primary"  href ="/Customers/Create"/>
+    <input type="button" class="btn btn-primary"  href ="/Customers/Create" value="Add New Customer"/>
 </p>
 <div class="card card-purple">
     <div class="card-header">
-        <h3 class="card-title">Customer</h3>
+        <h3 class="card-title">All Customers List</h3>
     </div>
 
     <table class="table">
@@ -53,10 +53,12 @@
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.CustomerId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId })
+                    
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }, htmlAttributes: new { @class = "btn btn-warning btn-sm" } ) 
+                   
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
                 </td>
+              
             </tr>
         }
 

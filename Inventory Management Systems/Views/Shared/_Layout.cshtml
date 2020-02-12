@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <title class="info-box-icon">INV | MS Pro</title>
     <link href="~/Content/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
-    <script src="~/Content/plugins/datatables/jquery.dataTables.js"></script>
+   @* <script src="~/Content/plugins/datatables/jquery.dataTables.js"></script>*@
     <!-- Font Awesome Icons -->
     <link href="~/Content/plugins/fontawesome-free/css/all.css" rel="stylesheet" />
     <!-- Theme style -->
@@ -20,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
     @RenderSection("scripts", required: false)
     <div class="wrapper">
 
@@ -33,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <img src="~/Content/AdminLTE/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 
 
-                <span href ="/Home/Index" class="brand-text font-weight-light">Inventory MS Pro</span>
+                <span href="/Home/Index" class="brand-text font-weight-light">Inventory MS Pro</span>
             </a>
 
             <!-- Sidebar -->
@@ -53,107 +53,56 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column layout-fixed" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Purchase
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
+    with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a href="/Home/Deshboard" class="nav-link ">
+                                <i class="fa fa-home"></i>
+                                <p>Deshboard</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/tblItemcategories/Index" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Category</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/Customers/Create" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Customer</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/tblItems/Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Product</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fa fa-shopping-cart"></i>
-                                <p>
-                                    Sale
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
+                        <li class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="/Customers/Create" class="nav-link">
+                                <i class="fa fa-users"></i>
+                                <p>Customer</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Entry</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Sale Report</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fa fa-shopping-cart"></i>
-                                <p>
-                                    Invoice
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
+                        <li class="nav-item">
+                            <a href="/tblItems/Index" class="nav-link">
+                                <i class="fa fa-bell"></i>
+                                <p>Product</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/tblInvoices/Create" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Generate Invoice</p>
-                                    </a>
-                                </li>
-
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/tblItemcategories/Index" class="nav-link ">
+                                <i class="fa fa-file-invoice"></i>
+                                <p>Invoice</p>
+                            </a>
                         </li>
 
 
-                        <li class="nav-item has-treeview menu-open">
+
+                        <li class="nav nav-treeview">
+                        <li class="nav-item">
                             <a href="#" class="nav-link ">
-                                <i class="nav-icon fa fa-shopping-cart"></i>
-                                <p>
-                                    Voucher
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
+                                <i class="fa fa-building"></i>
+                                <p>Company</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Generate Voucher</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Report</p>
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-user"></i>
+                                <p>User Profile</p>
+                            </a>
                         </li>
 
-                    </ul>
-                </nav>
+
+                        </ul>
+
+
+</nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -202,6 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/AdminLTE/jquery/jquery.js"></script>
 
     <!-- Bootstrap 4 -->

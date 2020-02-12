@@ -29,7 +29,12 @@ namespace Inventory_Management_Systems.Controllers
 
             return View(SaleViewModel);
         }
-
+        public ActionResult Deshboard()
+        {
+            ViewBag.totalCustomers = db.Customers.Count();
+            ViewBag.totalProducts = db.tblItems.Count();
+            return View();
+        }
         public ActionResult Puchase()
         {
             ViewBag.Message = "Purchase.";
