@@ -170,12 +170,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
     <Compile Include="Controllers\tblAccountHeadsController.cs" />
     <Compile Include="Controllers\tblAccountsController.cs" />
+    <Compile Include="Controllers\tblCompaniesController.cs" />
+    <Compile Include="Controllers\tblCustomersController.cs" />
     <Compile Include="Controllers\tblInvoiceDetailsController.cs" />
     <Compile Include="Controllers\tblInvoicesController.cs" />
     <Compile Include="Controllers\tblItemcategoriesController.cs" />
@@ -187,37 +188,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201912171716318_1.cs" />
-    <Compile Include="Migrations\201912171716318_1.Designer.cs">
-      <DependentUpon>201912171716318_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912171729239_2.cs" />
-    <Compile Include="Migrations\201912171729239_2.Designer.cs">
-      <DependentUpon>201912171729239_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912181726126_11.cs" />
-    <Compile Include="Migrations\201912181726126_11.Designer.cs">
-      <DependentUpon>201912181726126_11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912181731581_12.cs" />
-    <Compile Include="Migrations\201912181731581_12.Designer.cs">
-      <DependentUpon>201912181731581_12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912181736057_90.cs" />
-    <Compile Include="Migrations\201912181736057_90.Designer.cs">
-      <DependentUpon>201912181736057_90.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002021103292_updateINVOICETABLE.cs" />
-    <Compile Include="Migrations\202002021103292_updateINVOICETABLE.Designer.cs">
-      <DependentUpon>202002021103292_updateINVOICETABLE.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002101752258_199.cs" />
-    <Compile Include="Migrations\202002101752258_199.Designer.cs">
-      <DependentUpon>202002101752258_199.cs</DependentUpon>
+    <Compile Include="Migrations\202003171612121_tblCustomerChane.cs" />
+    <Compile Include="Migrations\202003171612121_tblCustomerChane.Designer.cs">
+      <DependentUpon>202003171612121_tblCustomerChane.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\tblCompany.cs" />
+    <Compile Include="Models\tblCustomer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Sale.cs" />
@@ -231,7 +209,7 @@
     <Compile Include="Models\tblVoucher.cs" />
     <Compile Include="Models\tblVoucherDetail.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\ViewModel\SaleViewModel.cs" />
+    <Compile Include="Models\ViewModel\InvoiceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -3557,16 +3535,6 @@
     <Content Include="Views\Sales\Details.cshtml" />
     <Content Include="Views\Sales\Edit.cshtml" />
     <Content Include="Views\Sales\Index.cshtml" />
-    <Content Include="Views\tblInvoices\Create.cshtml" />
-    <Content Include="Views\tblInvoices\Delete.cshtml" />
-    <Content Include="Views\tblInvoices\Details.cshtml" />
-    <Content Include="Views\tblInvoices\Edit.cshtml" />
-    <Content Include="Views\tblInvoices\Index.cshtml" />
-    <Content Include="Views\Customers\Create.cshtml" />
-    <Content Include="Views\Customers\Delete.cshtml" />
-    <Content Include="Views\Customers\Details.cshtml" />
-    <Content Include="Views\Customers\Edit.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Home\Deshboard.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -3578,6 +3546,21 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\tblInvoices\Create.cshtml" />
+    <Content Include="Views\tblInvoices\Delete.cshtml" />
+    <Content Include="Views\tblInvoices\Details.cshtml" />
+    <Content Include="Views\tblInvoices\Edit.cshtml" />
+    <Content Include="Views\tblInvoices\Index.cshtml" />
+    <Content Include="Views\tblCompanies\Create.cshtml" />
+    <Content Include="Views\tblCompanies\Delete.cshtml" />
+    <Content Include="Views\tblCompanies\Details.cshtml" />
+    <Content Include="Views\tblCompanies\Edit.cshtml" />
+    <Content Include="Views\tblCompanies\Index.cshtml" />
+    <Content Include="Views\tblCustomers\Create.cshtml" />
+    <Content Include="Views\tblCustomers\Delete.cshtml" />
+    <Content Include="Views\tblCustomers\Details.cshtml" />
+    <Content Include="Views\tblCustomers\Edit.cshtml" />
+    <Content Include="Views\tblCustomers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3586,33 +3569,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912171716318_1.resx">
-      <DependentUpon>201912171716318_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912171729239_2.resx">
-      <DependentUpon>201912171729239_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912181726126_11.resx">
-      <DependentUpon>201912181726126_11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912181731581_12.resx">
-      <DependentUpon>201912181731581_12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912181736057_90.resx">
-      <DependentUpon>201912181736057_90.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002021103292_updateINVOICETABLE.resx">
-      <DependentUpon>202002021103292_updateINVOICETABLE.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002101752258_199.resx">
-      <DependentUpon>202002101752258_199.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003171612121_tblCustomerChane.resx">
+      <DependentUpon>202003171612121_tblCustomerChane.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

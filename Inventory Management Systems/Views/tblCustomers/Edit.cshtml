@@ -1,4 +1,4 @@
-﻿@model Inventory_Management_Systems.Models.Customer
+﻿@model Inventory_Management_Systems.Models.tblCustomer
 
 @{
     ViewBag.Title = "Edit";
@@ -12,10 +12,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Customer</h4>
+        <h4>tblCustomer</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.CustomerId)
+        @Html.HiddenFor(model => model.customerId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.CustomerCode, htmlAttributes: new { @class = "control-label col-md-2" })

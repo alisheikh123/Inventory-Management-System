@@ -1,4 +1,4 @@
-﻿@model Inventory_Management_Systems.Models.ViewModel.SaleViewModel
+﻿@model Inventory_Management_Systems.Models.ViewModel.InvoiceViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -9,85 +9,38 @@
 
 
 <h2 style="text-align:center;color:dimgrey">AL-Sheikh Trading System</h2>
-
-<h4>List of Invoice</h4>
-
-
-
-
-
-
-
-
-
-<form action="~/Home/Submit" method="post" class="form-control">
-        <div class="row ">
-            <div class=" col-md-12">
-                <div class="col-md-4" style="display:inline-block">
-                    <label>Invoice Code:</label>
-                   
-                        @foreach (var acc in Model.tblInvoices)
-                        {
-                 
-                            <input type="text" name="invoiceCode" value="@acc.invoice_Code" /> 
-                       
-                        }
-            
-                  
-                </div>
-                <div class=" col-md-4" style="float:right">
-                    <label>Invoice Type:</label>
-
-                    <input type="text" name="invoiceCode" />
-                </div>
-                <div class=" col-md-4" style="float:right">
-                    <label>Payment Method:</label>
-                    <input type="text" name="invoiceCode" />
-                </div>
-
-            </div>
-        </div>
-        <div class="row ">
-            <div class=" col-md-12">
-                <div class="col-md-4" style="display:inline-block">
-                    <label>Account Name:</label>
-                    <input type="text" name="invoiceCode" />
-                </div>
-                <div class=" col-md-4" style="float:right">
-                    <label>Customer Name:</label>
-
-                    <input type="text" name="invoiceCode" />
-                </div>
-                <div class=" col-md-4" style="float:right">
-                    <label>Price:</label>
-                    <input type="text" name="invoiceCode" />
-                </div>
-
-            </div>
-        </div>
-
-        <div class="row ">
-            <div class=" col-md-12">
-                <div class="col-md-4" style="display:inline-block">
-                    <label>Quantity:</label>
-                    <input type="text" name="invoiceCode" />
-                </div>
-                <div class=" col-md-4" style="float:right">
-                    <label>Total Amount:</label>
-
-                    <input type="text" name="invoiceCode" />
-                </div>
-                <div class=" col-md-4" style="float:right">
-                    <label>Price:</label>
-                    <input type="text" name="invoiceCode" />
-                </div>
-
-            </div>
-        </div>
-    </form>
+<div class="row col-12">
+    <table>
+        <tr>
+            <th>
+                Invoice Code
+            </th>
+            <td>
+                <input type="date" />
+            </td>
 
 
+            <th>
+                Invoice Date
+            </th>
+            <td>
+                <input type="date" />
+            </td>
 
+
+            <th>
+               Customer Name
+            </th>
+            <td>
+              
+                    <input type="text" value="" />
+           
+               
+            </td>
+        </tr>
+    </table>
+
+</div>
 
 
 

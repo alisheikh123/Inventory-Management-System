@@ -29,10 +29,14 @@ namespace Inventory_Management_Systems.Models
         [Display(Name = "Invoice Date :")]
         public DateTime invoice_Date { get; set; }
 
+        [Required(ErrorMessage = "*Required Due Date ")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [Display(Name = "Due Date :")]
+        public DateTime Due_Date { get; set; }
 
-        [Required(ErrorMessage = "*Required  Company Name")]
+        
         [Display(Name = "Company Name :")]
-        public string CompanyName { get; set; }
+        public int? companyId { get; set; }
 
 
         //Account Table Data
@@ -43,7 +47,7 @@ namespace Inventory_Management_Systems.Models
 
       
         [Display(Name = "Customer Name :")]
-        public string customerName { get; set; }
+        public int? customerId { get; set; }
 
 
         [Required(ErrorMessage = "*Required Created Date")]
@@ -57,7 +61,11 @@ namespace Inventory_Management_Systems.Models
         [ForeignKey("accountId")]
         public virtual tblAccount TblAccount { get; set; }
 
-       
+        [ForeignKey("companyId")]
+        public virtual tblCompany TblCompany { get; set; }
+
+        [ForeignKey("customerId")]
+        public virtual tblCustomer TblCustomer { get; set; }
 
 
     }

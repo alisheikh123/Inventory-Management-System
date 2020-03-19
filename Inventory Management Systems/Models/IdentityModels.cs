@@ -52,6 +52,8 @@ namespace Inventory_Management_Systems.Models
 
         public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.Sale> Sales { get; set; }
 
-        public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.Customer> Customers { get; set; }
+        public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.tblCustomer> Customers { get; set; }
+
+        public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.tblCompany> Companies { get; set; }
     }
 }

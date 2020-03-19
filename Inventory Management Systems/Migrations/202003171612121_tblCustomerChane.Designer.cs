@@ -7,13 +7,13 @@ namespace Inventory_Management_Systems.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class _90 : IMigrationMetadata
+    public sealed partial class tblCustomerChane : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_90));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(tblCustomerChane));
         
         string IMigrationMetadata.Id
         {
-            get { return "201912181736057_90"; }
+            get { return "202003171612121_tblCustomerChane"; }
         }
         
         string IMigrationMetadata.Source

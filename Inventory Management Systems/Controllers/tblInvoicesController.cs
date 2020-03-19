@@ -17,7 +17,7 @@ namespace Inventory_Management_Systems.Controllers
         // GET: tblInvoices
         public ActionResult Index()
         {
-            var tblInvoices = db.tblInvoices.Include(t => t.TblAccount);
+            var tblInvoices = db.tblInvoices.Include(t => t.TblAccount).Include(t => t.TblCompany).Include(t => t.TblCustomer);
             return View(tblInvoices.ToList());
         }
 
@@ -38,25 +38,13 @@ namespace Inventory_Management_Systems.Controllers
 
         // GET: tblInvoices/Create
         public ActionResult Create()
-
         {
-            string currentDate=  DateTime.Now.ToString("ddMMyyyy");
-            string shopname = "ALS";
-            int invoiceID = 10001;
-            string  InvoiceCodes = shopname + currentDate + invoiceID;
-            var checkInvoiceCodeExist =db.tblInvoices.Where(x => x.invoice_Code == InvoiceCodes).Count();
-            if (checkInvoiceCodeExist>0)
-            {
-                invoiceID++;
-                InvoiceCodes = shopname + currentDate + invoiceID;
-                ViewBag.InvoiceCode = InvoiceCodes;
-            }
-            else
-            {
-                ViewBag.InvoiceCode = InvoiceCodes;
-            }
-            
+            var invoiceDates = DateTime.Now;
+            ViewBag.invoiceDate = invoiceDates.Date;
+           
             ViewBag.accountId = new SelectList(db.tblAccounts, "accountId", "accountTitle");
+            ViewBag.companyId = new SelectList(db.Companies, "companyId", "CompanyName");
+            ViewBag.customerId = new SelectList(db.Customers, "customerId", "CustomerCode");
             return View();
         }
 
@@ -65,19 +53,19 @@ namespace Inventory_Management_Systems.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "invoiceId,invoice_Code,Invoice_type,payment_Mode,invoice_Date,CompanyName,accountId,customerName,Created_Date")] tblInvoice tblInvoice)
+        public ActionResult Create([Bind(Include = "invoiceId,invoice_Code,Invoice_type,payment_Mode,invoice_Date,Due_Date,companyId,accountId,customerId,Created_Date")] tblInvoice tblInvoice)
         {
             if (ModelState.IsValid)
             {
-
-                tblInvoice.Created_Date = DateTime.Now;
-                tblInvoice.invoice_Date = DateTime.Now;
+                tblInvoice.Created_Date= DateTime.Now;
                 db.tblInvoices.Add(tblInvoice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.accountId = new SelectList(db.tblAccounts, "accountId", "accountTitle", tblInvoice.accountId);
+            ViewBag.companyId = new SelectList(db.Companies, "companyId", "CompanyCode", tblInvoice.companyId);
+            ViewBag.customerId = new SelectList(db.Customers, "customerId", "CustomerCode", tblInvoice.customerId);
             return View(tblInvoice);
         }
 
@@ -94,6 +82,8 @@ namespace Inventory_Management_Systems.Controllers
                 return HttpNotFound();
             }
             ViewBag.accountId = new SelectList(db.tblAccounts, "accountId", "accountTitle", tblInvoice.accountId);
+            ViewBag.companyId = new SelectList(db.Companies, "companyId", "CompanyCode", tblInvoice.companyId);
+            ViewBag.customerId = new SelectList(db.Customers, "customerId", "CustomerCode", tblInvoice.customerId);
             return View(tblInvoice);
         }
 
@@ -102,7 +92,7 @@ namespace Inventory_Management_Systems.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "invoiceId,invoice_Code,Invoice_type,payment_Mode,invoice_Date,CompanyName,accountId,customerName,Created_Date")] tblInvoice tblInvoice)
+        public ActionResult Edit([Bind(Include = "invoiceId,invoice_Code,Invoice_type,payment_Mode,invoice_Date,Due_Date,companyId,accountId,customerId,Created_Date")] tblInvoice tblInvoice)
         {
             if (ModelState.IsValid)
             {
@@ -111,6 +101,8 @@ namespace Inventory_Management_Systems.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.accountId = new SelectList(db.tblAccounts, "accountId", "accountTitle", tblInvoice.accountId);
+            ViewBag.companyId = new SelectList(db.Companies, "companyId", "CompanyCode", tblInvoice.companyId);
+            ViewBag.customerId = new SelectList(db.Customers, "customerId", "CustomerCode", tblInvoice.customerId);
             return View(tblInvoice);
         }
 

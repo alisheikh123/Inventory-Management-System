@@ -7,19 +7,19 @@ using System.Web;
 
 namespace Inventory_Management_Systems.Models
 {
-    public class Customer
+    public class tblCompany
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CustomerId { get; set; }
+        public int companyId { get; set; }
 
 
-        [Display(Name = "Customer Code")]
+        [Display(Name = "Company Code")]
         [Required]
-        public string CustomerCode { get; set; }
+        public string CompanyCode { get; set; }
 
-        [Display(Name = "Name")]      
+        [Display(Name = "Company Name")]
         [Required]
-        public string Name { get; set; }
+        public string CompanyName { get; set; }
 
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
@@ -29,10 +29,11 @@ namespace Inventory_Management_Systems.Models
         [DataType(DataType.PhoneNumber, ErrorMessage = "phone is not valid")]
         public string Contact { get; set; }
 
+        [Display(Name = "Web")]
+        public string webaddress { get; set; }
+
         [DataType(DataType.MultilineText)]
         [Display(Name = "Address")]
         public string Address { get; set; }
-
-   
     }
 }

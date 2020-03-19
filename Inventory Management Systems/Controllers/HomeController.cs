@@ -13,21 +13,17 @@ namespace Inventory_Management_Systems.Controllers
         ApplicationDbContext db = new ApplicationDbContext(); 
         public ActionResult Index()
         {
-            var invoices = db.tblInvoices.ToList<tblInvoice>();
-            var invoice_detail = db.tblInvoiceDetails.ToList<tblInvoiceDetail>();
-            var itemlist = db.tblItems.ToList<tblItem>();
-            var accounts = db.tblAccounts.ToList<tblAccount>();
+            var invoiceList = new List<tblInvoice>();
+            var CustomerList = new List<tblCustomer>();
 
-            var SaleViewModel = new SaleViewModel
+            var InvoicView = new InvoiceViewModel()
             {
-                tblInvoices = invoices,
-                tblInvoiceDetails = invoice_detail,
-                tblItems = itemlist,
-                tblAccounts = accounts
+                tblInvoice = invoiceList,
+                Customer = CustomerList
 
             };
 
-            return View(SaleViewModel);
+            return View(InvoicView);
         }
         public ActionResult Deshboard()
         {

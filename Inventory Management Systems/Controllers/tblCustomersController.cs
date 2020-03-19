@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -10,118 +11,116 @@ using Inventory_Management_Systems.Models;
 
 namespace Inventory_Management_Systems.Controllers
 {
-    public class CustomersController : Controller
+    public class tblCustomersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Customers
-        public ActionResult Index()
+        // GET: tblCustomers
+        public async Task<ActionResult> Index()
         {
-            return View(db.Customers.ToList());
+            return View(await db.Customers.ToListAsync());
         }
 
-       
-        // GET: Customers/Details/5
-        public ActionResult Details(int? id)
+        // GET: tblCustomers/Details/5
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            tblCustomer tblCustomer = await db.Customers.FindAsync(id);
+            if (tblCustomer == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(tblCustomer);
         }
 
-        // GET: Customers/Create
+        // GET: tblCustomers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: tblCustomers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,CustomerCode,Name,Email,Contact,Address")] Customer customer)
+        public async Task<ActionResult> Create([Bind(Include = "customerId,CustomerCode,Name,Email,Contact,Address")] tblCustomer tblCustomer)
         {
             if (ModelState.IsValid)
             {
-                var customerCode = db.Customers.Where(x => x.CustomerCode == customer.CustomerCode).Count();
-
-                if (customerCode > 0)
+                var checkCompanyCode = db.Customers.Where(x => x.CustomerCode == tblCustomer.CustomerCode).Count();
+                if (checkCompanyCode > 0)
                 {
-                    ModelState.AddModelError("customerCode", "Course Code Already Exist");
+                    ModelState.AddModelError("CustomerCode", "Customer Code Already Exist!");
                 }
                 else
                 {
-                    db.Customers.Add(customer);
-                    db.SaveChanges();
+                    db.Customers.Add(tblCustomer);
+                    await db.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
-                }
+            }
 
-            return View(customer);
+            return View(tblCustomer);
         }
 
-        // GET: Customers/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: tblCustomers/Edit/5
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            tblCustomer tblCustomer = await db.Customers.FindAsync(id);
+            if (tblCustomer == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(tblCustomer);
         }
 
-        // POST: Customers/Edit/5
+        // POST: tblCustomers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,CustomerCode,Name,Email,Contact,Address")] Customer customer)
+        public async Task<ActionResult> Edit([Bind(Include = "customerId,CustomerCode,Name,Email,Contact,Address")] tblCustomer tblCustomer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Entry(tblCustomer).State = EntityState.Modified;
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            return View(tblCustomer);
         }
 
-        // GET: Customers/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: tblCustomers/Delete/5
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            tblCustomer tblCustomer = await db.Customers.FindAsync(id);
+            if (tblCustomer == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(tblCustomer);
         }
 
-        // POST: Customers/Delete/5
+        // POST: tblCustomers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
-            db.SaveChanges();
+            tblCustomer tblCustomer = await db.Customers.FindAsync(id);
+            db.Customers.Remove(tblCustomer);
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

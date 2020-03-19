@@ -15,6 +15,12 @@
             @Html.DisplayNameFor(model => model.TblAccount.accountTitle)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.TblCompany.CompanyCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TblCustomer.CustomerCode)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.invoice_Code)
         </th>
         <th>
@@ -27,10 +33,7 @@
             @Html.DisplayNameFor(model => model.invoice_Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.customerName)
+            @Html.DisplayNameFor(model => model.Due_Date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Created_Date)
@@ -42,6 +45,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TblAccount.accountTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TblCompany.CompanyCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TblCustomer.CustomerCode)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.invoice_Code)
@@ -56,10 +65,7 @@
             @Html.DisplayFor(modelItem => item.invoice_Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.customerName)
+            @Html.DisplayFor(modelItem => item.Due_Date)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Created_Date)
