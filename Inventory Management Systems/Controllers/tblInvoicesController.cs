@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CrystalDecisions.CrystalReports.Engine;
 using Inventory_Management_Systems.Models;
 
 namespace Inventory_Management_Systems.Controllers
@@ -20,6 +22,31 @@ namespace Inventory_Management_Systems.Controllers
             var tblInvoices = db.tblInvoices.Include(t => t.TblAccount).Include(t => t.TblCompany).Include(t => t.TblCustomer);
             return View(tblInvoices.ToList());
         }
+
+        public ActionResult InvoiceReportExport()
+        {
+     
+
+            var Invoic = db.tblInvoices.Include(t => t.TblAccount).Include(t => t.TblCompany).Include(t => t.TblCustomer);
+            List<tblInvoice> list = new List<tblInvoice>();
+            list = Invoic.ToList();
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Report"), "InvoiceReport.rpt"));
+            rd.SetDataSource(list);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream,"application/pdf","Invoice Report");
+            }
+            catch {
+
+                throw;
+            }
+        }
+
 
         // GET: tblInvoices/Details/5
         public ActionResult Details(int? id)
@@ -40,8 +67,18 @@ namespace Inventory_Management_Systems.Controllers
         public ActionResult Create()
         {
             var invoiceDates = DateTime.Now;
-            ViewBag.invoiceDate = invoiceDates.Date;
-           
+            string invstart = "E";
+            string invMiddle = DateTime.Now.Date.ToString("ddMMyyyy");
+            int invEnd = 1000;
+            invEnd++;
+            string invoiceNumber = invstart + invMiddle + invEnd.ToString();
+
+
+
+
+
+            ViewBag.invoiceNo = invoiceNumber;
+            
             ViewBag.accountId = new SelectList(db.tblAccounts, "accountId", "accountTitle");
             ViewBag.companyId = new SelectList(db.Companies, "companyId", "CompanyName");
             ViewBag.customerId = new SelectList(db.Customers, "customerId", "CustomerCode");

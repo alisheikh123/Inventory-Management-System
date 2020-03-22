@@ -25,7 +25,7 @@ namespace Inventory_Management_Systems.Models
         public paymentMode payment_Mode { get; set; }
 
         [Required(ErrorMessage = "*Required Invoice Date ")]
-        [DataType(DataType.Date),DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]       
+        [DataType(DataType.Date),DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}"),]       
         [Display(Name = "Invoice Date :")]
         public DateTime invoice_Date { get; set; }
 
@@ -36,7 +36,7 @@ namespace Inventory_Management_Systems.Models
 
         
         [Display(Name = "Company Name :")]
-        public int? companyId { get; set; }
+        public int companyId { get; set; }
 
 
         //Account Table Data
@@ -47,7 +47,7 @@ namespace Inventory_Management_Systems.Models
 
       
         [Display(Name = "Customer Name :")]
-        public int? customerId { get; set; }
+        public int customerId { get; set; }
 
 
         [Required(ErrorMessage = "*Required Created Date")]
