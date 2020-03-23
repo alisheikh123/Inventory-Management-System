@@ -14,14 +14,14 @@ namespace Inventory_Management_Systems.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: tblItems
+        // GET: tblItems1
         public ActionResult Index()
         {
             var tblItems = db.tblItems.Include(t => t.category).Include(t => t.Unit);
             return View(tblItems.ToList());
         }
 
-        // GET: tblItems/Details/5
+        // GET: tblItems1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +36,7 @@ namespace Inventory_Management_Systems.Controllers
             return View(tblItem);
         }
 
-        // GET: tblItems/Create
+        // GET: tblItems1/Create
         public ActionResult Create()
         {
             ViewBag.catId = new SelectList(db.tblItemcategories, "catId", "catName");
@@ -44,7 +44,7 @@ namespace Inventory_Management_Systems.Controllers
             return View();
         }
 
-        // POST: tblItems/Create
+        // POST: tblItems1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -63,7 +63,7 @@ namespace Inventory_Management_Systems.Controllers
             return View(tblItem);
         }
 
-        // GET: tblItems/Edit/5
+        // GET: tblItems1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,7 +80,7 @@ namespace Inventory_Management_Systems.Controllers
             return View(tblItem);
         }
 
-        // POST: tblItems/Edit/5
+        // POST: tblItems1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -98,7 +98,7 @@ namespace Inventory_Management_Systems.Controllers
             return View(tblItem);
         }
 
-        // GET: tblItems/Delete/5
+        // GET: tblItems1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +113,7 @@ namespace Inventory_Management_Systems.Controllers
             return View(tblItem);
         }
 
-        // POST: tblItems/Delete/5
+        // POST: tblItems1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

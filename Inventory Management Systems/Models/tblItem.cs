@@ -26,9 +26,13 @@ namespace Inventory_Management_Systems.Models
         [Required(ErrorMessage = "*Required Item Code ")]
         public string ItemCode { get; set; }
 
-        [Required(ErrorMessage = "*Required ItemName")]
+        [Required(ErrorMessage = "*Required Item Name")]
         [Display(Name = "Item Name ")]
         public string itemName { get; set; }
+
+        [Required(ErrorMessage = "*Required Quantity")]
+        [Display(Name = "Quantity ")]
+        public int Quantity { get; set; }
 
         [Required(ErrorMessage = "*Required Purchase Price")]
         [Display(Name = "Purchase Price ")]

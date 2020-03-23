@@ -10,8 +10,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title class="info-box-icon">INV | MS Pro</title>
+
+
     <link href="~/Content/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
-   @* <script src="~/Content/plugins/datatables/jquery.dataTables.js"></script>*@
+
     <!-- Font Awesome Icons -->
     <link href="~/Content/plugins/fontawesome-free/css/all.css" rel="stylesheet" />
     <!-- Theme style -->
@@ -19,6 +21,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     @RenderSection("scripts", required: false)
@@ -139,14 +147,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </aside>
         <!-- /.control-sidebar -->
         <!-- Main Footer -->
-        <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-            </div>
-            <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-        </footer>
+        @*<footer class="main-footer">
+        
+          
+            
+        </footer>*@
     </div>
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->

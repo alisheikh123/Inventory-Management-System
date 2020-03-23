@@ -40,7 +40,7 @@ namespace Inventory_Management_Systems.Models
 
         public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.tblItemUnit> tblItemUnits { get; set; }
 
-        public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.User> User { get; set; }
+       
 
         public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.tblInvoice> tblInvoices { get; set; }
 
@@ -50,7 +50,7 @@ namespace Inventory_Management_Systems.Models
 
         public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.tblVoucherDetail> tblVoucherDetails { get; set; }
 
-        public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.Sale> Sales { get; set; }
+        public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.tblOrder> tblOrders { get; set; }
 
         public System.Data.Entity.DbSet<Inventory_Management_Systems.Models.tblCustomer> Customers { get; set; }
 

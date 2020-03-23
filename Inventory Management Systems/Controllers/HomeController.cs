@@ -15,11 +15,15 @@ namespace Inventory_Management_Systems.Controllers
         {
             var invoiceList = new List<tblInvoice>();
             var CustomerList = new List<tblCustomer>();
+            var ItemList = new List<tblItem>();
+            var OrderList = new List<tblOrder>();
 
             var InvoicView = new InvoiceViewModel()
             {
                 tblInvoice = invoiceList,
-                Customer = CustomerList
+                Customer = CustomerList,
+                tblItem = ItemList,
+                tblOrders = OrderList
 
             };
 

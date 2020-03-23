@@ -50,6 +50,8 @@ namespace Inventory_Management_Systems.Models
         public int customerId { get; set; }
 
 
+
+
         [Required(ErrorMessage = "*Required Created Date")]
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [Display(Name = "Created Date :")]

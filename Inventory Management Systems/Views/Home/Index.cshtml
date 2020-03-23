@@ -1,49 +1,307 @@
 ﻿@model Inventory_Management_Systems.Models.ViewModel.InvoiceViewModel
-
 @{
-    ViewBag.Title = "Home Page";
-
-
-
+    ViewBag.Title = "Index";
 }
 
+<head>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
 
-<h2 style="text-align:center;color:dimgrey">AL-Sheikh Trading System</h2>
-<div class="row col-12">
-    <table>
-        <tr>
-            <th>
-                Invoice Code
-            </th>
-            <td>
-                <input type="date" />
-            </td>
+   
+     
+</head>
+<h2>Invoice Generate</h2>
 
 
-            <th>
-                Invoice Date
-            </th>
-            <td>
-                <input type="date" />
-            </td>
+<div class="card card-default">
+    <div class="card-header">
+        <h2 class="card-title">Invoice Generate</h2>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Invoice Code:</label>
+
+                    <input class="form-control col-8" />
+
+                </div>
+
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Invoice Date:</label>
+                    <input class="form-control col-8" />
+                </div>
+                <!-- /.form-group -->
+                <!-- /.col -->
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Invoice Due Date:</label>
+                    <input class="form-control col-8" />
+                </div>
+                <!-- /.form-group -->
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Customer Name:</label>
+
+                    <input class="form-control col-8" />
+
+                </div>
+
+            </div>
+            <!-- /.col -->
+            <!-- /.row -->
+        </div>
 
 
-            <th>
-               Customer Name
-            </th>
-            <td>
-              
-                    <input type="text" value="" />
-           
-               
-            </td>
-        </tr>
-    </table>
+        <!--Add Item Button-->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
 
+                    <!--Item Button-->
+                    <button class="form-control col-4 btn btn-info" data-toggle="modal" data-target="#ItemModal"><i class="fa fa-cart-plus"> Add Item</i></button>
+
+
+
+                    <!--Modal of Items-->
+                    <!-- Modal -->
+                    <div class="modal fade" id="ItemModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header bg-info">
+
+                                    <h4 class="modal-title "><i class="fa fa-shopping-cart "> Add Items</i></h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>Item Name:</label>
+                                                <input class="form-control" />
+                                            </div>
+
+                                            <div class="col-6">
+                                                <label>Quantity:</label>
+                                                <input class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>Price:</label>
+                                                <input class="form-control" />
+                                            </div>
+
+                                            <div class="col-6">
+                                                <label>Discount:</label>
+                                                <input class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>Amount:</label>
+                                                <input class="form-control" />
+                                            </div>
+
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success"><i class="fa fa-plus-circle"> Add</i></button>
+
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span aria-hidden="true">&times; Close</span></button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Modal End-->
+                </div>
+
+            </div>
+            <!-- /.col -->
+            <!-- /.row -->
+        </div>
+        <br />
+        <br />
+        <!--Item List Update-->
+        <div class="row col-12">
+            <table class="table table-active table-bordered table-striped table-info table-hover table-responsive-lg" id="products">
+                <tr class="bg bg-blue">
+                    <th>
+                        <label>Item Name</label>
+                    </th>
+                    <th>
+                        <label>Quantity</label>
+                    </th>
+                    <th>
+                        <label>Price</label>
+                    </th>
+
+                    <th>
+                        <label>Amount</label>
+                    </th>
+                    <th>
+                        <label>Action</label>
+                    </th>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        Colgate
+                    </td>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        220
+                    </td>
+
+                    <td>
+                        440
+                    </td>
+                    <th>
+                        @Html.ActionLink("Delete", "Delete")
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Colgate
+                    </td>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        220
+                    </td>
+
+                    <td>
+                        440
+                    </td>
+                    <th>
+                        @Html.ActionLink("Delete", "Delete")
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+
+
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                @*<div class="form-group">
+                <label>Note:</label>
+
+                <input class="form-control col-8" type="text" />
+
+            </div>*@
+
+                <div class="form-group">
+                    <label>Note :</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+
+            </div>
+
+            <div class="col-md-2"></div>
+                <!-- /.col -->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Total Amount:</label>
+                        <input class="form-control col-8" />
+                    </div>
+
+                    <!-- /.form-group -->
+                    <!-- /.col -->
+                </div>
+
+
+                <!-- /.row -->
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Amount Paide:</label>
+                        <input class="form-control col-8" />
+                    </div>
+                    <!-- /.form-group -->
+                    <!-- /.col -->
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Balance Due:</label>
+
+                        <input class="form-control col-8" type="text" />
+
+                    </div>
+
+                </div>
+                <!-- /.col -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Status:</label>
+                        <select class="form-control" id="sel1" >
+                            
+                            <option>Paid</option>
+                            <option>Due</option>
+                          
+                        </select>
+                    </div>
+
+                    <!-- /.form-group -->
+                    <!-- /.col -->
+                </div>
+
+
+
+                <!-- /.row -->
+            </div>
+
+
+            <div class="row">
+
+                <button id="cinv" class="btn btn-success col-2" style="margin-left:auto;margin-right:auto;"><i class="fa fa-save"> Create Invoice</i></button>
+
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
 </div>
 
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 
-
-
-
-
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js">
+</script>
+<script>
+    $(document).ready(function () {
+        $("#products").DataTable();
+    });
+</script>

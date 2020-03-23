@@ -10,123 +10,116 @@ using Inventory_Management_Systems.Models;
 
 namespace Inventory_Management_Systems.Controllers
 {
-    public class UsersController : Controller
+    public class tblOrdersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Users
+        // GET: tblOrders
         public ActionResult Index()
         {
-            return View(db.User.ToList());
+            var tblOrders = db.tblOrders.Include(t => t.TblItem).Include(t => t.TblItemUnit);
+            return View(tblOrders.ToList());
         }
-        public ActionResult Login([Bind(Include = "userId,Email,username,password")]User user)
-        {
-            if (ModelState.IsValid) {
-                var login = db.User.Where(x => x.username == user.username && x.Email == user.Email || x.password == user.password).ToList();
-                if (login.Count > 0)
-                {
-                    return RedirectToAction("Index", "tblItems");
-                }
-                else {
-                    ViewBag.error = "Incorrect UserName and Password!";
-                    return View();
-                }
-                
 
-            }
-            return View();
-        }
-        // GET: Users/Details/5
+        // GET: tblOrders/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.User.Find(id);
-            if (user == null)
+            tblOrder tblOrder = db.tblOrders.Find(id);
+            if (tblOrder == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(tblOrder);
         }
 
-        // GET: Users/Create
+        // GET: tblOrders/Create
         public ActionResult Create()
         {
+            ViewBag.itemName = new SelectList(db.tblItems, "itemId", "ItemCode");
+            ViewBag.ItemUnit = new SelectList(db.tblItemUnits, "unitId", "unitName");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: tblOrders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "userId,Email,username,password")] User user)
+        public ActionResult Create([Bind(Include = "Id,itemName,ItemUnit,Quantity,price,discount,Amount,totalAmount,AmountPaid,BalanceDue,status,Description,current_Date")] tblOrder tblOrder)
         {
             if (ModelState.IsValid)
             {
-                db.User.Add(user);
+                db.tblOrders.Add(tblOrder);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            ViewBag.itemName = new SelectList(db.tblItems, "itemId", "ItemCode", tblOrder.itemName);
+            ViewBag.ItemUnit = new SelectList(db.tblItemUnits, "unitId", "unitName", tblOrder.ItemUnit);
+            return View(tblOrder);
         }
 
-        // GET: Users/Edit/5
+        // GET: tblOrders/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.User.Find(id);
-            if (user == null)
+            tblOrder tblOrder = db.tblOrders.Find(id);
+            if (tblOrder == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            ViewBag.itemName = new SelectList(db.tblItems, "itemId", "ItemCode", tblOrder.itemName);
+            ViewBag.ItemUnit = new SelectList(db.tblItemUnits, "unitId", "unitName", tblOrder.ItemUnit);
+            return View(tblOrder);
         }
 
-        // POST: Users/Edit/5
+        // POST: tblOrders/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "userId,Email,username,password")] User user)
+        public ActionResult Edit([Bind(Include = "Id,itemName,ItemUnit,Quantity,price,discount,Amount,totalAmount,AmountPaid,BalanceDue,status,Description,current_Date")] tblOrder tblOrder)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(tblOrder).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(user);
+            ViewBag.itemName = new SelectList(db.tblItems, "itemId", "ItemCode", tblOrder.itemName);
+            ViewBag.ItemUnit = new SelectList(db.tblItemUnits, "unitId", "unitName", tblOrder.ItemUnit);
+            return View(tblOrder);
         }
 
-        // GET: Users/Delete/5
+        // GET: tblOrders/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.User.Find(id);
-            if (user == null)
+            tblOrder tblOrder = db.tblOrders.Find(id);
+            if (tblOrder == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(tblOrder);
         }
 
-        // POST: Users/Delete/5
+        // POST: tblOrders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.User.Find(id);
-            db.User.Remove(user);
+            tblOrder tblOrder = db.tblOrders.Find(id);
+            db.tblOrders.Remove(tblOrder);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
