@@ -2,12 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <head>
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css">
 
-   
-     
+
+
+
+    <script src=""></script>
 </head>
 <h2>Invoice Generate</h2>
 
@@ -37,7 +37,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Invoice Date:</label>
-                    <input class="form-control col-8" />
+                    <input class="form-control col-8" data-val="true" data-val-date="* The field Invoice date Missing" type="date" />
                 </div>
                 <!-- /.form-group -->
                 <!-- /.col -->
@@ -45,7 +45,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Invoice Due Date:</label>
-                    <input class="form-control col-8" />
+                    <input class="form-control col-8" type="date" data-val="true" data-val-date="* The field Invoice due-date Missing" />
                 </div>
                 <!-- /.form-group -->
                 <!-- /.col -->
@@ -58,7 +58,8 @@
                 <div class="form-group">
                     <label>Customer Name:</label>
 
-                    <input class="form-control col-8" />
+                    @Html.DropDownList("CustomerList", null, "--Select Customer--", htmlAttributes: new { @class = "form-control col-8" })
+
 
                 </div>
 
@@ -95,7 +96,8 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <label>Item Name:</label>
-                                                <input class="form-control" />
+                                                <div id="magicsuggest"></div>
+
                                             </div>
 
                                             <div class="col-6">
@@ -212,11 +214,11 @@
         <div class="row">
             <div class="col-md-6">
                 @*<div class="form-group">
-                <label>Note:</label>
+                        <label>Note:</label>
 
-                <input class="form-control col-8" type="text" />
+                        <input class="form-control col-8" type="text" />
 
-            </div>*@
+                    </div>*@
 
                 <div class="form-group">
                     <label>Note :</label>
@@ -226,82 +228,88 @@
             </div>
 
             <div class="col-md-2"></div>
+            <!-- /.col -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Total Amount:</label>
+                    <input class="form-control col-8" />
+                </div>
+
+                <!-- /.form-group -->
                 <!-- /.col -->
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Total Amount:</label>
-                        <input class="form-control col-8" />
-                    </div>
-
-                    <!-- /.form-group -->
-                    <!-- /.col -->
-                </div>
-
-
-                <!-- /.row -->
             </div>
 
 
-            <div class="row">
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Amount Paide:</label>
-                        <input class="form-control col-8" />
-                    </div>
-                    <!-- /.form-group -->
-                    <!-- /.col -->
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Balance Due:</label>
-
-                        <input class="form-control col-8" type="text" />
-
-                    </div>
-
-                </div>
-                <!-- /.col -->
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Status:</label>
-                        <select class="form-control" id="sel1" >
-                            
-                            <option>Paid</option>
-                            <option>Due</option>
-                          
-                        </select>
-                    </div>
-
-                    <!-- /.form-group -->
-                    <!-- /.col -->
-                </div>
-
-
-
-                <!-- /.row -->
-            </div>
-
-
-            <div class="row">
-
-                <button id="cinv" class="btn btn-success col-2" style="margin-left:auto;margin-right:auto;"><i class="fa fa-save"> Create Invoice</i></button>
-
-            </div>
-            <div class="card-footer">
-
-            </div>
+            <!-- /.row -->
         </div>
+
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Amount Paide:</label>
+                    <input class="form-control col-8" />
+                </div>
+                <!-- /.form-group -->
+                <!-- /.col -->
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Balance Due:</label>
+
+                    <input class="form-control col-8" type="text" />
+
+                </div>
+
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Status:</label>
+                    <select class="form-control" id="sel1">
+
+                        <option>Paid</option>
+                        <option>Due</option>
+
+                    </select>
+                </div>
+
+                <!-- /.form-group -->
+                <!-- /.col -->
+            </div>
+
+
+
+            <!-- /.row -->
+        </div>
+
+
+        <div class="row">
+
+            <button id="cinv" class="btn btn-success col-2" style="margin-left:auto;margin-right:auto;"><i class="fa fa-save"> Create Invoice</i></button>
+
+        </div>
+        <div class="card-footer">
+
+        </div>
+    </div>
 </div>
 
 <!-- jQuery -->
-<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+@section Scripts {
 
-<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js">
-</script>
-<script>
-    $(document).ready(function () {
-        $("#products").DataTable();
-    });
-</script>
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Content/Magicsuggest-magicsuggest-cf74869/magicsuggest-min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#magicsuggest').magicSuggest({
+                //[...] // configuration options
+            });
+        });
+    </script>
+
+
+
+}
+

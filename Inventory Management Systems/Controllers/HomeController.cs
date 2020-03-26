@@ -5,6 +5,7 @@ using System.Linq;
 using Inventory_Management_Systems.Models.ViewModel;
 using System.Web;
 using System.Web.Mvc;
+using Inventory_Management_Systems.Models.Class;
 
 namespace Inventory_Management_Systems.Controllers
 {
@@ -17,6 +18,8 @@ namespace Inventory_Management_Systems.Controllers
             var CustomerList = new List<tblCustomer>();
             var ItemList = new List<tblItem>();
             var OrderList = new List<tblOrder>();
+
+            ViewBag.CustomerList = new SelectList(db.Customers.OrderBy(x=>x.Name), "customerId","Name");
 
             var InvoicView = new InvoiceViewModel()
             {
@@ -62,5 +65,35 @@ namespace Inventory_Management_Systems.Controllers
 
             return View();
         }
+
+
+        public ActionResult GetItem(string q)
+        {
+            var list = new List<GetItem>();
+
+            list.Add(new GetItem()
+            {
+                text = "India",
+                id = "101"
+            });
+            list.Add(new GetItem()
+            {
+                text = "Srilanka",
+                id = "102"
+            });
+            list.Add(new GetItem()
+            {
+                text = "Singapore",
+                id = "103"
+            });
+
+            if (!(string.IsNullOrEmpty(q) || string.IsNullOrWhiteSpace(q)))
+            {
+                list = list.Where(x => x.text.ToLower().StartsWith(q.ToLower())).ToList();
+            }
+            return Json(new { items = list }, JsonRequestBehavior.AllowGet);
+            
+        }
+
     }
 }
