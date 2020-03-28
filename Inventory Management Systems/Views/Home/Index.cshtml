@@ -1,26 +1,13 @@
 ﻿@model Inventory_Management_Systems.Models.ViewModel.InvoiceViewModel
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Index";
 }
-<head>
 
 
+<div class="card card-deck">
 
-
-    <script src=""></script>
-</head>
-<h2>Invoice Generate</h2>
-
-
-<div class="card card-default">
-    <div class="card-header">
-        <h2 class="card-title">Invoice Generate</h2>
-
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
-        </div>
-    </div>
     <!-- /.card-header -->
     <div class="card-body">
         <div class="row">
@@ -95,8 +82,8 @@
                                     <form>
                                         <div class="row">
                                             <div class="col-6">
-                                                <label>Item Name:</label>
-                                                <div id="magicsuggest"></div>
+                                                <label>Item Name:</label><br />
+                                                <select style="width:100%;"     class="js-data-example-ajax "></select>
 
                                             </div>
 
@@ -297,19 +284,28 @@
 </div>
 
 <!-- jQuery -->
-@section Scripts {
+@section scripts {
 
-@Scripts.Render("~/bundles/jqueryval")
-<script src="~/Content/Magicsuggest-magicsuggest-cf74869/magicsuggest-min.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $('#magicsuggest').magicSuggest({
-                //[...] // configuration options
-            });
+    
+
+        $('.js-data-example-ajax').select2({
+            
+            ajax: {
+                url: '/Home/GetItem',
+                dataType: 'json',
+                data: function (params) {
+                    var query = {
+                        search: params.term,
+                        type: 'public'
+                    }
+
+                    // Query parameters will be ?search=[term]&type=public
+                    return query;
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            }
         });
     </script>
 
 
-
 }
-
