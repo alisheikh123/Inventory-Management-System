@@ -49,7 +49,7 @@ namespace Inventory_Management_Systems.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "itemId,catId,UnitId,ItemCode,itemName,purchase_Price,sale_Price")] tblItem tblItem)
+        public ActionResult Create([Bind(Include = "itemId,catId,UnitId,ItemCode,itemName,Quantity,purchase_Price,sale_Price")] tblItem tblItem)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Inventory_Management_Systems.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "itemId,catId,UnitId,ItemCode,itemName,purchase_Price,sale_Price")] tblItem tblItem)
+        public ActionResult Edit([Bind(Include = "itemId,catId,UnitId,ItemCode,itemName,Quantity,purchase_Price,sale_Price")] tblItem tblItem)
         {
             if (ModelState.IsValid)
             {

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Inventory_Management_Systems.Models
 {
@@ -15,6 +17,7 @@ namespace Inventory_Management_Systems.Models
 
         [Required(ErrorMessage = "*Required Invoice ID")]
         [Display(Name = "Invoice ID :")]
+        [Remote("GetInvoiceCode", "Home", HttpMethod = "POST", ErrorMessage = "Invoice Code Already Exist.")]
         public int invoiceId { get; set; }
 
         [Required(ErrorMessage = "*Required Item ID")]

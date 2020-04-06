@@ -1,311 +1,416 @@
 ﻿@model Inventory_Management_Systems.Models.ViewModel.InvoiceViewModel
+@*@model Inventory_Management_Systems.Models.tblInvoiceDetail*@
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 
-<div class="card card-deck">
+        <div class="card card-deck">
 
-    <!-- /.card-header -->
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Invoice Code:</label>
-
-                    <input class="form-control col-8" />
-
-                </div>
-
-            </div>
-            <!-- /.col -->
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Invoice Date:</label>
-                    <input class="form-control col-8" data-val="true" data-val-date="* The field Invoice date Missing" type="date" />
-                </div>
-                <!-- /.form-group -->
-                <!-- /.col -->
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Invoice Due Date:</label>
-                    <input class="form-control col-8" type="date" data-val="true" data-val-date="* The field Invoice due-date Missing" />
-                </div>
-                <!-- /.form-group -->
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Customer Name:</label>
-
-                    @Html.DropDownList("CustomerList", null, "--Select Customer--", htmlAttributes: new { @class = "form-control col-8" })
+        <!-- /.card-header -->
+            <div class="card-body">
+               
+                    <div class="row">
 
 
-                </div>
-
-            </div>
-            <!-- /.col -->
-            <!-- /.row -->
-        </div>
+                        <div class="col-md-4">
 
 
-        <!--Add Item Button-->
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-
-                    <!--Item Button-->
-                    <button class="form-control col-4 btn btn-info" data-toggle="modal" data-target="#ItemModal"><i class="fa fa-cart-plus"> Add Item</i></button>
-
-
-
-                    <!--Modal of Items-->
-                    <!-- Modal -->
-                    <div class="modal fade" id="ItemModal" role="dialog">
-                        <div class="modal-dialog">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header bg-info">
-
-                                    <h4 class="modal-title "><i class="fa fa-shopping-cart "> Add Items</i></h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Item Name:</label><br />
-                                                <select style="width:100%;"     class="js-data-example-ajax "></select>
-
-                                            </div>
-
-                                            <div class="col-6">
-                                                <label>Quantity:</label>
-                                                <input class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Price:</label>
-                                                <input class="form-control" />
-                                            </div>
-
-                                            <div class="col-6">
-                                                <label>Discount:</label>
-                                                <input class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label>Amount:</label>
-                                                <input class="form-control" />
-                                            </div>
-
-
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success"><i class="fa fa-plus-circle"> Add</i></button>
-
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span aria-hidden="true">&times; Close</span></button>
-
+                            <div class="form-group">
+                                Invoice Code
+                                <div class="col-md-10">
+                                    @* @Html.DropDownList("invoiceId", null, htmlAttributes: new { @class = " invoice form-control" })*@
+                                    <input type="text" class="invoice form-control" name="invoiceId" />
                                 </div>
                             </div>
 
                         </div>
+                        <!-- /.col -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Invoice Date:</label>
+                                <input class="form-control col-8" data-val="true" data-val-date="* The field Invoice date Missing" type="date" />
+                            </div>
+                            <!-- /.form-group -->
+                            <!-- /.col -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Invoice Due Date:</label>
+                                <input class="form-control col-8" type="date" data-val="true" data-val-date="* The field Invoice due-date Missing" />
+                            </div>
+                            <!-- /.form-group -->
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
                     </div>
-                    <!--Modal End-->
-                </div>
 
-            </div>
-            <!-- /.col -->
-            <!-- /.row -->
-        </div>
-        <br />
-        <br />
-        <!--Item List Update-->
-        <div class="row col-12">
-            <table class="table table-active table-bordered table-striped table-info table-hover table-responsive-lg" id="products">
-                <tr class="bg bg-blue">
-                    <th>
-                        <label>Item Name</label>
-                    </th>
-                    <th>
-                        <label>Quantity</label>
-                    </th>
-                    <th>
-                        <label>Price</label>
-                    </th>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Customer Name:</label>
 
-                    <th>
-                        <label>Amount</label>
-                    </th>
-                    <th>
-                        <label>Action</label>
-                    </th>
-                </tr>
+                                @Html.DropDownList("CustomerList", null, "--Select Customer--", htmlAttributes: new { @class = "customerList form-control col-8" })
 
 
-                <tr>
-                    <td>
-                        Colgate
-                    </td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        220
-                    </td>
+                            </div>
 
-                    <td>
-                        440
-                    </td>
-                    <th>
-                        @Html.ActionLink("Delete", "Delete")
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        Colgate
-                    </td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        220
-                    </td>
-
-                    <td>
-                        440
-                    </td>
-                    <th>
-                        @Html.ActionLink("Delete", "Delete")
-                    </th>
-                </tr>
-            </table>
-
-        </div>
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.row -->
+                    </div>
 
 
-        <br />
-        <br />
-        <div class="row">
-            <div class="col-md-6">
-                @*<div class="form-group">
+                    <!--Add Item Button-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <!--Item Button-->
+                                <button class="form-control col-4 btn btn-info" data-toggle="modal" data-target="#ItemModal"><i class="fa fa-cart-plus"> Add Item</i></button>
+
+
+                             
+
+                                    <!--Modal of Items-->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="ItemModal" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-info">
+
+                                                    <h4 class="modal-title "><i class="fa fa-shopping-cart "> Add Items</i></h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <form>
+                                                        <div class="form-group">
+                                                            Invoice Code
+                                                            <div class="col-md-10">
+                                                              @*  @Html.DropDownList("invoiceId", null, htmlAttributes: new { @class = "form-control" })*@
+                                                                <input type="text" class="form-control" name="invoiceId"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <input type="hidden" id="invoiceId" />
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <label>Item Name:</label><br />
+
+                                                                @Html.DropDownList("ItemList", null, "--Select Item--", htmlAttributes: new { @class = " js-data-example-ajax form-control col-8", style = "width:100%;", nameof = "ProductName" })
+                                                            </div>
+                                                            <p>
+                                                                <div class="col-6">
+                                                                    <label>Quantity:</label>
+                                                                    <input class="quan form-control " type="number" name="Productquantity" />
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <label>Price:</label>
+                                                                <section class="price form-control"></section>
+
+
+
+                                                            </div>
+
+                                                            <div class="col-6">
+                                                                <label>Amount:</label>
+                                                                <input class="totalamount form-control" type="number" name="Amount" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+
+
+                                                            <div class="col-6" style="margin-top:20px;">
+                                                                <label>Remaining Quantity:</label>
+                                                                <label class="remain"></label>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="add btn btn-success"><i class="fa fa-plus-circle"> Add</i></button>
+
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span aria-hidden="true">&times; Close</span></button>
+
+                                                </div>
+
+
+
+                                            </div>
+                                         
+                                        </div>
+                                    </div>
+                              
+                                    <!--Modal End-->
+                                </div>
+
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.row -->
+                    </div>
+               
+                    <br />
+                    <br />
+                    <!--Item List Update-->
+                    <div class="row col-12">
+                        <table class="table table-active table-bordered table-striped table-info table-hover table-responsive-lg" id="products">
+                            <tr class="bg bg-blue">
+                                <th>
+                                    <label>Item Name</label>
+                                </th>
+                                <th>
+                                    <label>Quantity</label>
+                                </th>
+                                <th>
+                                    <label>Price</label>
+                                </th>
+
+                                <th>
+                                    <label>Amount</label>
+                                </th>
+                                <th>
+                                    <label>Action</label>
+                                </th>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <label id="pn"></label>
+                                </td>
+                                <td>
+                                    <label id="qu"></label>
+                                </td>
+                                <td>
+                                    <label id="pr"></label>
+                                </td>
+
+                                <td>
+                                    <label id="am"></label>
+                                </td>
+                                <th>
+                                    @Html.ActionLink("Delete", "Delete")
+                                </th>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            @*<div class="form-group">
                         <label>Note:</label>
 
                         <input class="form-control col-8" type="text" />
 
                     </div>*@
 
-                <div class="form-group">
-                    <label>Note :</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            <div class="form-group">
+                                <label>Note :</label>
+                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-2"></div>
+                        <!-- /.col -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Total Amount:</label>
+                                <input class="form-control col-8" />
+                            </div>
+
+                            <!-- /.form-group -->
+                            <!-- /.col -->
+                        </div>
+
+
+                        <!-- /.row -->
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Amount Paide:</label>
+                                <input class="form-control col-8" />
+                            </div>
+                            <!-- /.form-group -->
+                            <!-- /.col -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Balance Due:</label>
+
+                                <input class="form-control col-8" type="text" />
+
+                            </div>
+
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status:</label>
+                                <select class="form-control" id="sel1">
+
+                                    <option>Paid</option>
+                                    <option>Due</option>
+
+                                </select>
+                            </div>
+
+                            <!-- /.form-group -->
+                            <!-- /.col -->
+                        </div>
+
+
+
+                        <!-- /.row -->
+                    </div>
+
+
+                    <div class="row">
+
+                        <button id="cinv" class="btn btn-success col-2" style="margin-left:auto;margin-right:auto;"><i class="fa fa-save"> Create Invoice</i></button>
+
+                    </div>
+                    <div class="card-footer">
+
+                    </div>
                 </div>
-
-            </div>
-
-            <div class="col-md-2"></div>
-            <!-- /.col -->
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Total Amount:</label>
-                    <input class="form-control col-8" />
-                </div>
-
-                <!-- /.form-group -->
-                <!-- /.col -->
-            </div>
-
-
-            <!-- /.row -->
-        </div>
-
-
-        <div class="row">
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Amount Paide:</label>
-                    <input class="form-control col-8" />
-                </div>
-                <!-- /.form-group -->
-                <!-- /.col -->
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Balance Due:</label>
-
-                    <input class="form-control col-8" type="text" />
-
-                </div>
-
-            </div>
-            <!-- /.col -->
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Status:</label>
-                    <select class="form-control" id="sel1">
-
-                        <option>Paid</option>
-                        <option>Due</option>
-
-                    </select>
-                </div>
-
-                <!-- /.form-group -->
-                <!-- /.col -->
-            </div>
-
-
-
-            <!-- /.row -->
-        </div>
-
-
-        <div class="row">
-
-            <button id="cinv" class="btn btn-success col-2" style="margin-left:auto;margin-right:auto;"><i class="fa fa-save"> Create Invoice</i></button>
-
-        </div>
-        <div class="card-footer">
-
-        </div>
     </div>
-</div>
 
-<!-- jQuery -->
-@section scripts {
+    <!-- jQuery -->
+    @section scripts {
 
-    <script type="text/javascript">
-    
 
-        $('.js-data-example-ajax').select2({
-            
-            ajax: {
-                url: '/Home/GetItem',
-                dataType: 'json',
-                data: function (params) {
-                    var query = {
-                        search: params.term,
-                        type: 'public'
+
+
+        <script type="text/javascript">
+
+            $(".customerList").select2();
+            $(".js-data-example-ajax").select2();
+            $(".js-data-example-ajax").on("change", function () {
+                var itemValue = $(".js-data-example-ajax").val()
+                $.ajax({
+                    type: 'get',
+                    url: '/Home/GetItem',
+                    data: { id: itemValue },
+                    datatype: "json",
+                    async: "false",
+                    success: function (data) {
+                        $(data).each(function () {
+                            $('.price').html(data.price);
+                            $('.remain').html(data.itemQuantity);
+
+                        });
+
+                        return;
+
+
+
+                    },
+                    error: function (err) {
+                        alert("error");
                     }
 
-                    // Query parameters will be ?search=[term]&type=public
-                    return query;
-                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
-            }
-        });
-    </script>
+                });
+
+            });
+        </script>
+        <script>
+            $(function () {
+            
+
+                $(".quan,.price").keyup(function (e) {
+
+                    var q = $(".quan").val();
+                    var p = $(".price").text();
+                    var result = "";
+
+                    //alert("Quantity" + q + "Price" + p);
+                    if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                        result = parseFloat(q) * parseFloat(p);
+                    }
+                    $(".totalamount").val(result);
+
+                });
+
+            });
 
 
-}
+        </script>
+
+        <script>
+            $(".add").click(function () {
+                var invoiceid = $(".invoice").val();
+              
+
+                var price = $(".price").text();
+                var ItemName = $(".js-data-example-ajax").val();
+                var Quantity = $(".quan").val();
+                var RemainQuantity = $(".remain").text();
+                var amount = $(".totalamount").val();
+
+
+                //alert("Amount:" + amount + "<br>Remaining Quantity:" + RemainQuantity + "<br>Qunatity:" + Quantity + "<br>ItemName" + ItemName + "<br>Price:" + price);
+
+                $.ajax({
+
+                    type: "post",
+                    url: "/Home/Index",
+                    data: {
+                        invoiceId: invoiceid,
+                        
+                        itemId: ItemName,
+                        //RemainQuan: RemainQuantity,
+                        price: price,
+                        Quantity: Quantity,
+                        amount: amount
+
+                    },
+                    datatype: "json",
+                    success: function (data) {
+                        $(data).each(function () {
+                            $('#pn').html(data.itemId);
+                            $('#pr').html(data.price);
+                            $('#qu').html(data.Quantity);
+                            $('#am').text(data.amount);
+
+
+
+                        });
+                    },
+                    error: function () {
+                        alert("error");
+
+                    }
+
+
+                });
+
+
+            });
+        </script>
+
+    }

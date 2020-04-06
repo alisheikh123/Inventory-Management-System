@@ -7,76 +7,93 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-    <a class="btn btn-success" href="@Url.Action("InvoiceReportExport")">Download Report</a>
+    <div class="row">
+        <div class="col-10">@Html.ActionLink("+ Create New", "Create",null,htmlAttributes:new { @class="btn btn-warning",@style="color:white"})</div>
+        <div class="col-2"><a class="btn btn-success" href="@Url.Action("InvoiceReportExport")">Download Report</a></div>
+    </div>
+   
+   
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TblAccount.accountTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TblCompany.CompanyCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TblCustomer.CustomerCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.invoice_Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Invoice_type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.payment_Mode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.invoice_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Due_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created_Date)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TblAccount.accountTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TblCompany.CompanyCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TblCustomer.CustomerCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.invoice_Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Invoice_type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.payment_Mode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.invoice_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Due_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created_Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.invoiceId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.invoiceId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.invoiceId })
-        </td>
-    </tr>
-}
+<div class="box box-primary ">
+    <div class="box-header">    
+            List of Generated Invoices 
+    </div>
+    <div class="box box-body">
+        <table class="table table-bordered table-striped table-condensed " >
+            <tr style="background-color:#3c8dbc;color:white">
+                <th>
+                    Invoice Code
+                </th>
+                <th>
+                    Invoice Date
+                </th>
+                <th>
+                    Invoice Due Date
+                </th>
+                <th>
+                    Account Title
+                </th>
+                <th>
+                    Company Name
+                </th>
+                <th>
+                    Customer Name
+                </th>
 
-</table>
+                @*<th>
+                    Invoice Type
+                </th>*@
+                <th>
+                    Payment Mode
+                </th>
+
+
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.invoice_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.invoice_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Due_Date)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TblAccount.accountTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TblCompany.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TblCustomer.Name)
+                </td>
+
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Invoice_type)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.payment_Mode)
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.invoiceId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.invoiceId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.invoiceId })
+                </td>
+            </tr>
+            }
+
+        </table>
+    </div>
+
+</div>
+

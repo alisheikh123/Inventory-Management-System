@@ -7,7 +7,24 @@ namespace Inventory_Management_Systems.Models.Class
 {
     public class GetItem
     {
-        public string id { get; set; }
-        public string text { get; set; }
+
+        public int invoiceDetailId { get; set; }
+
+
+        public int invoiceId { get; set; }
+
+        public int itemId { get; set; }
+
+
+        public decimal price { get; set; }
+
+     
+        public int Quantity { get; set; }
+
+
+
+        public decimal amount { get; set; }
+
+
     }
 }

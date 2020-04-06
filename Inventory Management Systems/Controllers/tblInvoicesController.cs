@@ -81,7 +81,7 @@ namespace Inventory_Management_Systems.Controllers
             
             ViewBag.accountId = new SelectList(db.tblAccounts, "accountId", "accountTitle");
             ViewBag.companyId = new SelectList(db.Companies, "companyId", "CompanyName");
-            ViewBag.customerId = new SelectList(db.Customers, "customerId", "CustomerCode");
+            ViewBag.customerId = new SelectList(db.Customers, "customerId", "Name");
             return View();
         }
 
