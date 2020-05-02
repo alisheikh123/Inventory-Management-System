@@ -13,7 +13,7 @@ namespace Inventory_Management_Systems.Models
         public int invoiceId { get; set; }
 
 
-        [Required(ErrorMessage = "*Required Category Name")]
+        [Required(ErrorMessage = "*Required Invoice Code")]
         [Display(Name = "Invoice Code :")]
         public string invoice_Code { get; set; }
 
@@ -34,18 +34,18 @@ namespace Inventory_Management_Systems.Models
         [Display(Name = "Due Date :")]
         public DateTime Due_Date { get; set; }
 
-        
+        [Required(ErrorMessage = "*Required Company Name")]
         [Display(Name = "Company Name :")]
         public int companyId { get; set; }
 
 
         //Account Table Data
-        [Required(ErrorMessage = "*Required  Account Name")]
+        [Required(ErrorMessage = "*Required Account Name")]
         [Display(Name = "Account Name :")]
         public int accountId { get; set; }
 
 
-      
+        [Required(ErrorMessage = "*Required Customer Name")]
         [Display(Name = "Customer Name :")]
         public int customerId { get; set; }
 

@@ -17,9 +17,11 @@ namespace Inventory_Management_Systems
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                        .Include("~/Scripts/jquery-{version}.js")
                        .Include("~/admin-lte/bower_components/select2/dist/js/select2.min.js")
-                     
-                      
-                        
+                       .Include("~/Content/plugins/DataTables-1.10.20/datatables.min.js")
+                       .Include("~/Content/Magicsuggest-magicsuggest-cf74869/magicsuggest.js")
+
+
+
 
                        );
 
@@ -54,8 +56,11 @@ namespace Inventory_Management_Systems
                        "~/Content/bootstrap.css")
                       .Include("~/admin-lte/bower_components/select2/dist/css/select2.min.css")
                        .Include("~/admin-lte/css/AdminLTE.css")
-                      .Include("~/admin-lte/css/skins/skin-blue.css"
-                       ));
+                      .Include("~/admin-lte/css/skins/skin-blue.css")
+                      .Include("~/Content/plugins/DataTables-1.10.20/datatables.min.css")
+                      .Include("~/Content/Magicsuggest-magicsuggest-cf74869/magicsuggest.css")
+
+                       );
         }
     }
 }

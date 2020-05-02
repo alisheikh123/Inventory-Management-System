@@ -4,60 +4,91 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>List of  Companies</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <div class="row ">
+        <div class="col-10">@Html.ActionLink(" Create New", "Create", null, htmlAttributes: new { @class = "btn btn-warning fa fa-plus-circle", @style = "color:white" })</div>
+
+    </div>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contact)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.webaddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th></th>
-    </tr>
+<div class="box box-primary ">
+    <div class="box-header">
+        List of  Companies
+    </div>
+    <div class="box-body">
+        <table class="table table-bordered table-striped table-condensed " id="tables">
+            <thead>
+                <tr style="background-color:#3c8dbc;color:white">
+                    <th>
+                        @Html.DisplayNameFor(model => model.CompanyCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CompanyName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Contact)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.webaddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>Action</th>
+                </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.webaddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.companyId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.companyId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.companyId })
-        </td>
-    </tr>
+                @foreach (var item in Model)
+                {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Contact)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.webaddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                          
+
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.companyId }, htmlAttributes: new { @class = "btn btn-default btn-sm fa fa-pencil" })
+                            @Html.ActionLink(" Details", "Details", new { id = item.companyId }, htmlAttributes: new { @class = "btn btn-info btn-sm fa fa-info " })
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.companyId }, htmlAttributes: new { @class = "btn btn-danger btn-sm fa fa-trash " })
+                        </td>
+                    </tr>
+                </tbody>
+            }
+
+            </table>
+        </div>
+    </div>
+@section Scripts {
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#tables').DataTable(
+
+          );
+            });
+
+    </script>
+
 }
-
-</table>

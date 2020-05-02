@@ -4,60 +4,90 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>List of Generated Vouchers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <div class="row ">
+        <div class="col-10">@Html.ActionLink(" Create New", "Create", null, htmlAttributes: new { @class = "btn btn-warning fa fa-plus-circle", @style = "color:white" })</div>
+
+    </div>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TblInvoice.invoice_Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.voucherCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.voucherDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.userId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createdDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.voucher_Type)
-        </th>
-        <th></th>
-    </tr>
+<div class="box box-primary ">
+    <div class="box-header">
+        List of Generated Vouchers
+    </div>
+    <div class="box-body">
+        <table class="table table-bordered table-striped table-condensed " id="tables">
+            <thead>
+                <tr style="background-color:#3c8dbc;color:white">
+                    <th>
+                        Invoice Code
+                    </th>
+                    <th>
+                        Voucher Code
+                    </th>
+                    <th>
+                        Voucher Date
+                    </th>
+                    <th>
+                        User Id
+                    </th>
+                    <th>
+                        Created Date
+                    </th>
+                    <th>
+                        Voucher Type
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TblInvoice.invoice_Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.voucherCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.voucherDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.userId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.createdDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.voucher_Type)
+                        </td>
+                        <td>
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.voucherId }, htmlAttributes: new { @class = "btn btn-default btn-sm fa fa-pencil" })
+                            @Html.ActionLink(" Details", "Details", new { id = item.voucherId }, htmlAttributes: new { @class = "btn btn-info btn-sm fa fa-info " })
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.voucherId }, htmlAttributes: new { @class = "btn btn-danger btn-sm fa fa-trash " })
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TblInvoice.invoice_Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.voucherCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.voucherDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createdDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.voucher_Type)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.voucherId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.voucherId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.voucherId })
-        </td>
-    </tr>
-}
+                        </td>
+                    </tr>
+                </tbody>
+            }
 
-</table>
+        </table>
+    </div>
+</div>
+@section Scripts {
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#tables').DataTable(
+
+          );
+            });
+
+    </script>
+
+}   

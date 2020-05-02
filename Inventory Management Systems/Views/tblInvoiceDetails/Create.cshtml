@@ -4,69 +4,166 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Generate Invoice Detail</h2>
 
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>tblInvoiceDetail</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.invoiceId, "invoiceId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("invoiceId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.invoiceId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.itemId, "itemId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("itemId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.itemId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+<div class="box box-primary direct-chat direct-chat-warning">
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-10">Generate Invoice Detail</div>
+            <div class="col-2"><a class="fa fa-arrow-circle-left" href="@Url.Action("Index")"> Back to List</a></div>
         </div>
     </div>
-}
+    <br />
+    <div class="box-body">
+        @using (Html.BeginForm())
+        {
+        <p >   @Html.ValidationMessageFor(model => model.invoiceId, "", new { @class = "text-danger" })</p>
+        <p>   @Html.ValidationMessageFor(model => model.itemId, "", new { @class = "text-danger" })</p>
+        <p>   @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })</p>
+        <p>    @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })</p>
+           
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+
+
+
+
+
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-save" aria-hidden="true"> Save</i></button>
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row col-12">
+                <div class="col-6">
+                    <div class="form-group">
+                        Invoice No
+                        <div class="col-md-10">
+                            @Html.DropDownList("invoiceId", null, "--Select Invoice No--", htmlAttributes: new { @class = "invoiceId form-control" })
+                         
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-group">
+                        Item Name
+                        <div class="col-md-10">
+                            @Html.DropDownList("itemId", null, "--Select Item--", htmlAttributes: new { @class = "itemId form-control" })
+                           
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="row col-12">
+                <div class="col-6">
+                    <div class="form-group">
+                        Price
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "prices form-control",Id="prices" } })*@
+                            <section class="prices form-control"></section>
+                            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        Quantity
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "quan form-control" } })
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-12">
+                <div class="col-6">
+                    <div class="form-group">
+                        Amount
+                        <div class="col-md-10">
+
+                            @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "totalamount form-control" } })
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        Remainig Quantity
+                        <div class="col-md-10">
+                            <label class="remain"></label>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+        </div>
+
+      
+
+        @section Scripts {
+           
+
+            <script type="text/javascript">
+
+
+                $('.invoiceId').select2();
+                $('.itemId').select2();
+                $(".itemId").on("change", function () {
+                    var itemValue = $(".itemId").val()
+                    $.ajax({
+                        type: 'get',
+                        url: '/tblInvoiceDetails/GetItem',
+                        data: { id: itemValue },
+                        datatype: "json",
+                        async: "false",
+                        success: function (data) {
+                            $(data).each(function () {
+                                $('.prices').html(data.price);
+                                $('.remain').html(data.itemQuantity);
+
+                            });
+
+                            return;
+
+
+
+                        },
+                        error: function (err) {
+                            alert("error");
+                        }
+
+                    });
+
+                });
+                $(".quan,.prices").keyup(function (e) {
+
+                    var q = $(".quan").val();
+                    var p = $(".prices").text();
+                    var result = "";
+
+                    //alert("Quantity" + q + "Price" + p);
+                    if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+                        result = parseFloat(q) * parseFloat(p);
+                    }
+                    $(".totalamount").val(result);
+
+                });
+
+
+            </script>
+
+        }

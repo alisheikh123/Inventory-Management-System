@@ -1,7 +1,7 @@
 ﻿@model Inventory_Management_Systems.Models.tblInvoice
 
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = "Create New Invoice";
 }
 
 
@@ -9,116 +9,107 @@
     <div class="box-header with-border">
         <div class="row">
             <div class="col-10">Generate Invoice</div>
-<div class="col-2"><a class="fa fa-arrow-circle-left" href="@Url.Action("Index")"> Back to List</a></div>
+            <div class="col-2"><a class="fa fa-arrow-circle-left" href="@Url.Action("Index")"> Back to List</a></div>
         </div>
     </div>
     <div class="box-body">
         <div class="container">
+
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-            <form>
-                <div class="form-row">
-
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.invoice_Code, htmlAttributes: new { @class = " control-label col-md-3" })
+                <p>@Html.ValidationMessageFor(model => model.invoice_Code, "", new { @class = "text-danger" })</p>
+                <p>@Html.ValidationMessageFor(model => model.invoice_Date, "", new { @class = "text-danger" })</p>
+                <p>@Html.ValidationMessageFor(model => model.Due_Date, "", new { @class = "text-danger" })</p>
+                <p>@Html.ValidationMessageFor(model => model.Invoice_type, "", new { @class = "text-danger" })</p>
+                <p>@Html.ValidationMessageFor(model => model.payment_Mode, "", new { @class = "text-danger" })</p>
+                <p>@Html.ValidationMessageFor(model => model.companyId, "", new { @class = "text-danger" })</p>
+                <p> @Html.ValidationMessageFor(model => model.accountId, "", new { @class = "text-danger" })</p>
+                <p>@Html.ValidationMessageFor(model => model.customerId, "", new { @class = "text-danger" })</p>
+                <form>
+                    <div class="form-row">
 
-                        @Html.EditorFor(model => model.invoice_Code, new { htmlAttributes = new { @class = "invoiceCode form-control", @Value = ViewBag.invoiceNo } })
-                        @Html.ValidationMessageFor(model => model.invoice_Code, "", new { @class = "text-danger" })
+                        <p>  @Html.ValidationSummary(true, "", new { @class = "text-danger" })</p>
+
+
+                        <div class="form-group col-md-5">
+                            Invoice Code
+                            @Html.EditorFor(model => model.invoice_Code, new { htmlAttributes = new { @class = "invoiceCode form-control", placeholder = "EddMMyyyXXXX", @Value = ViewBag.invoiceNo } })
+
+                        </div>
+                        <div class="form-group col-md-5">
+
+                            Invoice Date
+                            @Html.EditorFor(model => model.invoice_Date, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            DueDate
 
-                        @Html.LabelFor(model => model.invoice_Date, htmlAttributes: new { @class = "control-label col-md-3" })
+                            @Html.EditorFor(model => model.Due_Date, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group col-md-5">
+                            Invoice Type
 
+                            @Html.EnumDropDownListFor(model => model.Invoice_type, htmlAttributes: new { @class = "invoicetype form-control" })
 
-
-                        @Html.EditorFor(model => model.invoice_Date, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.invoice_Date, "", new { @class = "text-danger" })
-
-
-                    </div>
-
-
-
-                </div>
-
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.Due_Date, htmlAttributes: new { @class = "control-label col-md-3" })
-
-                        @Html.EditorFor(model => model.Due_Date, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Due_Date, "", new { @class = "text-danger" })
-
-
-                    </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.Invoice_type, htmlAttributes: new { @class = "control-label col-md-3" })
-
-                        @Html.EnumDropDownListFor(model => model.Invoice_type, htmlAttributes: new { @class = "invoicetype form-control" })
-                        @Html.ValidationMessageFor(model => model.Invoice_type, "", new { @class = "text-danger" })
-                    </div>
-
-                </div>
-
-
-
-
-                <div class="form-row">
-
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.payment_Mode, htmlAttributes: new { @class = "control-label col-md-3" })
-
-                        @Html.EnumDropDownListFor(model => model.payment_Mode, htmlAttributes: new { @class = "payment form-control" })
-                        @Html.ValidationMessageFor(model => model.payment_Mode, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.companyId, "Company", htmlAttributes: new { @class = "control-label col-md-3" })
-
-                        @Html.DropDownList("companyId", null, "--Select Company--", htmlAttributes: new { @class = "company form-control" })
-                        @Html.ValidationMessageFor(model => model.companyId, "", new { @class = "text-danger" })
+                        </div>
 
                     </div>
-                </div>
+                    <div class="form-row">
+
+                        <div class="form-group col-md-5">
+                            Payment Mode
+
+                            @Html.EnumDropDownListFor(model => model.payment_Mode, htmlAttributes: new { @class = "payment form-control" })
+
+                        </div>
+                        <div class="form-group col-md-5">
+                            Company
+
+                            @Html.DropDownList("companyId", null, "--Select Company--", htmlAttributes: new { @class = "company form-control" })
 
 
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.accountId, "Account", htmlAttributes: new { @class = "control-label col-md-3" })
-
-                        @Html.DropDownList("accountId", null, "--Select Account--", htmlAttributes: new { @class = "account form-control" })
-                        @Html.ValidationMessageFor(model => model.accountId, "", new { @class = "text-danger" })
+                        </div>
                     </div>
 
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(model => model.customerId, "Customer", htmlAttributes: new { @class = "control-label col-md-3" })
 
-                        @Html.DropDownList("customerId", null, "--Select Customer--", htmlAttributes: new { @class = "customer form-control" })
-                        @Html.ValidationMessageFor(model => model.customerId, "", new { @class = "text-danger" })
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            Account
 
+                            @Html.DropDownList("accountId", null, "--Select Account--", htmlAttributes: new { @class = "account form-control" })
+                           
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            Customer
+
+                            @Html.DropDownList("customerId", null, "--Select Customer--", htmlAttributes: new { @class = "customer form-control" })
+                     
+
+                        </div>
                     </div>
-                </div>
 
 
 
 
-              
+
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="row">
-                                <div class="col-11"></div>
-                                <div class="col-1">
-                                    <input type="submit" value="Save" class="btn btn-success"/>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="submit" class="btn btn-success btn-xs"><i class="fa fa-save" aria-hidden="true"> Save</i></button>
                                 </div>
                             </div>
-                            </div>
                         </div>
-              
+                    </div>
 
-            </form>
+
+                </form>
             }
 
         </div>

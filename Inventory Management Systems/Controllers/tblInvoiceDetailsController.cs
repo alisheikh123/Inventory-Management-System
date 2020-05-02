@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Inventory_Management_Systems.Models;
+using Inventory_Management_Systems.Models.Class;
 
 namespace Inventory_Management_Systems.Controllers
 {
@@ -40,7 +41,7 @@ namespace Inventory_Management_Systems.Controllers
         public ActionResult Create()
         {
             ViewBag.invoiceId = new SelectList(db.tblInvoices, "invoiceId", "invoice_Code");
-            ViewBag.itemId = new SelectList(db.tblItems, "itemId", "ItemCode");
+            ViewBag.itemId = new SelectList(db.tblItems, "itemId", "itemName");
             return View();
         }
 
@@ -59,7 +60,7 @@ namespace Inventory_Management_Systems.Controllers
             }
 
             ViewBag.invoiceId = new SelectList(db.tblInvoices, "invoiceId", "invoice_Code", tblInvoiceDetail.invoiceId);
-            ViewBag.itemId = new SelectList(db.tblItems, "itemId", "ItemCode", tblInvoiceDetail.itemId);
+            ViewBag.itemId = new SelectList(db.tblItems, "itemId", "itemName", tblInvoiceDetail.itemId);
             return View(tblInvoiceDetail);
         }
 
@@ -124,6 +125,35 @@ namespace Inventory_Management_Systems.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult GetItem(int id)
+        {
+           
+            var items = from m in db.tblItems
+                        select m;
+
+            if (id > 0)
+            {
+                var itemPrice = items.Where(x => x.itemId.Equals(id)).Select(x => new
+                {
+                    val = x.itemId,
+                    price = x.sale_Price,
+                    itemQuantity = x.Quantity
+
+                }).FirstOrDefault();
+
+
+                return Json(itemPrice, JsonRequestBehavior.AllowGet);
+            }
+
+
+
+
+            return View();
+
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -132,5 +162,8 @@ namespace Inventory_Management_Systems.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
     }
 }

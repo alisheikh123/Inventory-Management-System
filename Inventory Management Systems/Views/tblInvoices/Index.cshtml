@@ -1,99 +1,116 @@
 ﻿@model IEnumerable<Inventory_Management_Systems.Models.tblInvoice>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List of Generated Invoices";
 }
 
-<h2>Index</h2>
+<h2>List of Generated Invoices</h2>
 
 <p>
-    <div class="row">
-        <div class="col-10">@Html.ActionLink("+ Create New", "Create",null,htmlAttributes:new { @class="btn btn-warning",@style="color:white"})</div>
-        <div class="col-2"><a class="btn btn-success" href="@Url.Action("InvoiceReportExport")">Download Report</a></div>
+    <div class="row ">
+        <div class="col-10">@Html.ActionLink(" Create New", "Create", null, htmlAttributes: new { @class = "btn btn-warning fa fa-plus-circle", @style = "color:white" })</div>
+        <div class="col-2"><a class="btn btn-success fa fa-arrow-circle-o-down" href="@Url.Action("InvoiceReportExport")"> Download Report</a></div>
     </div>
-   
-   
+
+
 </p>
 
 <div class="box box-primary ">
-    <div class="box-header">    
-            List of Generated Invoices 
+    <div class="box-header">
+        List of Generated Invoices
     </div>
-    <div class="box box-body">
-        <table class="table table-bordered table-striped table-condensed " >
-            <tr style="background-color:#3c8dbc;color:white">
-                <th>
-                    Invoice Code
-                </th>
-                <th>
-                    Invoice Date
-                </th>
-                <th>
-                    Invoice Due Date
-                </th>
-                <th>
-                    Account Title
-                </th>
-                <th>
-                    Company Name
-                </th>
-                <th>
-                    Customer Name
-                </th>
+    <div class="box-body">
+        <table class="table table-bordered table-striped table-condensed " id="tables">
+            <thead>
+                <tr style="background-color:#3c8dbc;color:white">
+                    <th>
+                        Invoice Code
+                    </th>
+                    <th>
+                        Invoice Date
+                    </th>
+                    <th>
+                        Invoice Due Date
+                    </th>
+                    <th>
+                        Account Title
+                    </th>
+                    <th>
+                        Company Name
+                    </th>
+                    <th>
+                        Customer Name
+                    </th>
 
-                @*<th>
-                    Invoice Type
-                </th>*@
-                <th>
-                    Payment Mode
-                </th>
+                    @*<th>
+                        Invoice Type
+                    </th>*@
+                    <th>
+                        Payment Mode
+                    </th>
 
 
-                <th>Action</th>
-            </tr>
-
+                    <th>Action</th>
+                </tr>
+            </thead>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.invoice_Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.invoice_Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Due_Date)
-                </td>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.invoice_Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.invoice_Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Due_Date)
+                        </td>
 
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.TblAccount.accountTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TblCompany.CompanyName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TblCustomer.Name)
-                </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TblAccount.accountTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TblCompany.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TblCustomer.Name)
+                        </td>
 
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Invoice_type)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.payment_Mode)
-                </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.Invoice_type)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.payment_Mode)
+                        </td>
 
-
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.invoiceId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.invoiceId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.invoiceId })
-                </td>
-            </tr>
+                        
+                        <td >
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.invoiceId }, htmlAttributes: new { @class = "btn btn-default btn-sm fa fa-pencil" }) 
+                            @Html.ActionLink(" Details", "Details", new { id = item.invoiceId }, htmlAttributes: new { @class = "btn btn-info btn-sm fa fa-info " })
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.invoiceId }, htmlAttributes: new { @class = "btn btn-danger btn-sm fa fa-trash " })
+                        </td>
+                    </tr>
+                </tbody>
             }
 
         </table>
     </div>
 
 </div>
+@section Scripts {
+   
+  
 
+   
+    <script>
+        $(document).ready(function () {
+            $('#tables').DataTable(
+           
+          );
+            });
+       
+    </script>
+
+}

@@ -4,77 +4,103 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Add Voucher</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>tblVoucher</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.voucherCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.voucherCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.voucherCode, "", new { @class = "text-danger" })
-            </div>
+<div class="box box-primary direct-chat direct-chat-warning">
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-10">Voucher</div>
+            <div class="col-2"><a class="fa fa-arrow-circle-left" href="@Url.Action("Index")"> Back to List</a></div>
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.voucherDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.voucherDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.voucherDate, "", new { @class = "text-danger" })
+    <div class="box-body">
+        <div class="container">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                        
+                    
+                        <div class="form-group">
+                            
+                                <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save" aria-hidden="true"> Save</i></button>
+                           
+                        </div>
+                  
+               
+            <div class="form-horizontal">
+               
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        Voucher Code
+
+                        @Html.EditorFor(model => model.voucherCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.voucherCode, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-md-5">
+                        Invoice Code
+
+                        @Html.DropDownList("invoiceId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.invoiceId, "", new { @class = "text-danger" })
+
+                    </div>
+
+                  
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-5">
+                        Voucher Date
+
+                        @Html.EditorFor(model => model.voucherDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.voucherDate, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-md-5">
+                        Voucher Type
+                      
+                            @Html.EditorFor(model => model.voucher_Type, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.voucher_Type, "", new { @class = "text-danger" })
+                        
+
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        User ID
+
+                        @Html.EditorFor(model => model.userId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })
+
+                    </div>
+                  
+
+                </div>
+
+        
+
+
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.invoiceId, "invoiceId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("invoiceId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.invoiceId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.userId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.userId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.userId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.createdDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.createdDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.createdDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.voucher_Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.voucher_Type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.voucher_Type, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+
+
+

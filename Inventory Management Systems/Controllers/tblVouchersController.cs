@@ -52,6 +52,7 @@ namespace Inventory_Management_Systems.Controllers
         {
             if (ModelState.IsValid)
             {
+                tblVoucher.createdDate = DateTime.Now;
                 db.tblVouchers.Add(tblVoucher);
                 db.SaveChanges();
                 return RedirectToAction("Index");

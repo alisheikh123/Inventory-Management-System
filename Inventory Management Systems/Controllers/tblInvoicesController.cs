@@ -66,19 +66,7 @@ namespace Inventory_Management_Systems.Controllers
         // GET: tblInvoices/Create
         public ActionResult Create()
         {
-            var invoiceDates = DateTime.Now;
-            string invstart = "E";
-            string invMiddle = DateTime.Now.Date.ToString("ddMMyyyy");
-            int invEnd = 1000;
-            invEnd++;
-            string invoiceNumber = invstart + invMiddle + invEnd.ToString();
 
-
-
-
-
-            ViewBag.invoiceNo = invoiceNumber;
-            
             ViewBag.accountId = new SelectList(db.tblAccounts, "accountId", "accountTitle");
             ViewBag.companyId = new SelectList(db.Companies, "companyId", "CompanyName");
             ViewBag.customerId = new SelectList(db.Customers, "customerId", "Name");
@@ -94,10 +82,18 @@ namespace Inventory_Management_Systems.Controllers
         {
             if (ModelState.IsValid)
             {
-                tblInvoice.Created_Date= DateTime.Now;
-                db.tblInvoices.Add(tblInvoice);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var invoice = db.tblInvoices.Where(x => x.invoice_Code == tblInvoice.invoice_Code).Count();
+                if (invoice > 0)
+                {
+                    ModelState.AddModelError("invoice_Code", "Invoice Code Already Exist");
+                }
+                else
+                {
+                    tblInvoice.Created_Date = DateTime.Now;
+                    db.tblInvoices.Add(tblInvoice);
+                    db.SaveChanges();
+                    return RedirectToAction("Create","tblInvoiceDetails");
+                }
             }
 
             ViewBag.accountId = new SelectList(db.tblAccounts, "accountId", "accountTitle", tblInvoice.accountId);
