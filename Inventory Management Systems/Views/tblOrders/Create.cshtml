@@ -16,14 +16,14 @@
 
     <div class="box-body">
         <div class="container">
-            @using (Html.BeginForm())
+            @*@using (Html.BeginForm())
             {
-                @Html.AntiForgeryToken()
+                @Html.AntiForgeryToken()*@
 
                 <div class="form-horizontal">
                     <div class="form-group">
 
-                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save" aria-hidden="true"> Save</i></button>
+                        <button type="submit" class="btn btn-success btn-sm" onclick="save()"><i class="fa fa-save" aria-hidden="true"> Save</i></button>
 
                     </div>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -34,8 +34,8 @@
                         <div class="form-group col-md-5">
                             Item Name
 
-                           <div class="form-control" id="itemName"></div>
-                          @* @Html.DropDownList("itemName",null, htmlAttributes: new { @class = "itemName form-control" , multiple = "multiple" })*@
+                           <div class="itemName form-control"></div>
+                           @* @Html.DropDownList("itemName",null, htmlAttributes: new { @class = "itemName form-control" , multiple = "multiple" })*@
                             @Html.ValidationMessageFor(model => model.itemName, "", new { @class = "text-danger" })
 
                         </div>
@@ -43,7 +43,7 @@
                         <div class="form-group col-md-5">
                             Item Unit
                             <section class="itemunit form-control"></section>
-                           @* @Html.DropDownList("ItemUnit", null, "--Select Unit--", htmlAttributes: new { @class = "itemunit form-control" })*@
+                            @* @Html.DropDownList("ItemUnit", null, "--Select Unit--", htmlAttributes: new { @class = "itemunit form-control" })*@
                             @Html.ValidationMessageFor(model => model.ItemUnit, "", new { @class = "text-danger" })
 
                         </div>
@@ -61,9 +61,12 @@
                         </div>
 
                         <div class="form-group col-md-5">
+                           
                             Price
-                            <section class="prices form-control"></section>
-                           @* @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "prices form-control" } })*@
+                            
+                     <section class="prices form-control"></section>
+                           @*<input type="text" onchange="setTwoNumberDecimal" class="prices"/>*@
+                       @*  @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -127,12 +130,12 @@
 
 
                     <div class="form-row">
-                       
+
 
                         <div class="form-group col-md-5">
                             Discount
 
-                            @Html.EditorFor(model => model.discount, new { htmlAttributes = new { @class = "form-control" ,placeholder="%"} })
+                            @Html.EditorFor(model => model.discount, new { htmlAttributes = new { @class = "discount form-control", placeholder = "%" } })
                             @Html.ValidationMessageFor(model => model.discount, "", new { @class = "text-danger" })
 
                         </div>
@@ -146,29 +149,66 @@
 
 
                 </div>
-            }
+            @*}*@
         </div>
     </div>
 </div>
 @section scripts {
 
-   
+    <script>
+        function setTwoNumberDecimal(event) {
+            this.value = parseFloat(this.value).toFixed(2);
+        }
+    </script>
 
+    <script>
+        function save() {
+            var itemName = $('.itemName').get(0);
+            var unit = $('.itemunit').val();
+            var price = $('.prices').get();
+            var quantity = $('.quan').val();
+            var amount = $('amount').val();
+            var totalamount = $('totalamount').val();
+            var amountpaid = $('.AmountPaid').val();
+            var balancedue = $('.BalanceDue').val();
+            var status = $('.status').val();
+            var descript = $('#Description').val();
+            var currentdate = $('#current_Date').val();
+            var discount = $('.discount').val();
+
+            alert("ItemName:" + itemName + "<br /> unit" + unit + "<br />price" + price + "<br />quan" + quantity + "<br />amount" + amount + "<br />totalamount" + totalamount +
+                "<br />mountpaid" + amountpaid + "<br />balancedue" + balancedue + "<br />status" + status + "<br />descript" + descript + "<br />currentdate" + currentdate + "<br />discount" + discount
+            );
+
+        }
+    </script>
+
+
+
+    <script>
+        $(document).on("change keyup blur", ".discount", function () {
+            var main = $('.AmountPaid').val();
+            var disc = $('.discount').val();
+            var dec = (disc / 100).toFixed(2); //its convert 10 into 0.10
+            var mult = main * dec; // gives the value for subtract from main value
+            var discont = main - mult;
+
+            $('.totalamount').val(discont);
+        });
+    </script>
 
     <script>
         $(function () {
 
 
-           
-                $('#itemName').magicSuggest({
-                    
-                });
-          
+
+
+
 
             var totalAmount = 0;
             var Amountpaid = 0;
             var BalanceDue = 0;
-            var Amount= 0;
+            var Amount = 0;
             $('.totalamount').val(totalAmount);
             $('.AmountPaid').val(Amountpaid);
             $('.BalanceDue').val(BalanceDue);
@@ -180,32 +220,52 @@
 
 
 
-        //$('.itemunit').select2();
         $('.status').select2();
-        $('.itemName').magicSuggest({
-            
+
+
+        var ms = $('.itemName').magicSuggest({
+
+            allowFreeEntries: false,
+            useZebraStyle: true,
+            strictSuggest: true,
+            minChars: 2,
+            minCharsRenderer: function (v) {
+                return 'Be more precise!!';
+            },
+            resultAsString: true,
+            placeholder: "Search Items..",
+            data: '/tblOrders/getListItem',
+            valueField: 'itemid',
+            displayField: 'itemNamw',
+            maxSuggestions: 10,
+            maxSelection: 1
 
         });
-        $(".itemName").on("change", function () {
-            var itemValue = $('.itemName').val()
-          
-           
 
-           
-           
+
+
+        $(ms).on("selectionchange", function (e, m) {
+
+
+            var ItemNam = JSON.stringify(this.getValue());
+            var ItemName = ItemNam.replace(/[\[\]']/g, '');
+
+
+
             $.ajax({
                 type: 'post',
                 url: '/tblOrders/GetItem',
-                data: { id: itemValue },
+                data: { id: ItemName },
                 datatype: "json",
+                traditional: true,
                 async: "false",
                 success: function (data) {
                     $(data).each(function () {
                         
                         $('.prices').html(data.price);
                         $('.itemunit').html(data.unit);
-                        //$('prices').val('');
-                        console.log(data.price);
+
+
 
                     });
 
@@ -220,39 +280,44 @@
 
             });
 
-            //    .then(function (data) {
-            //    var option = new Option(data.itemValue, data.id, true, true);
-            //    itemValue.append(option).trigger('change');
 
-            //});
 
         });
 
-                                                                                              
-        $(".quan,.prices").keyup(function (e) {
 
+        //$(".quan,.prices").keyup(function (e) {
+        $(document).on("change keyup blur", ".quan", function () {
             var q = $(".quan").val();
             var p = $(".prices").text();
             var result = "";
 
-            //alert("Quantity" + q + "Price" + p);
+
             if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
                 result = parseFloat(q) * parseFloat(p);
             }
             $(".amount").val(result);
-           var amount = $(".amount").val(result);
-            var totalamount = 0;
-            totalamount += amount;
-            $('.totalamount').val(totalamount);
+          //  $(".totalamount").val(result);
+            //var amount = $(".amount").val(result);
+            //var totalamount = "";
+            //totalamount += amount;
+            //$('.totalamount').val(totalamount);
         });
-                          
+
+        //$(".AmountPaid,.amount").keyup(function (e) {
+        $(document).on("change keyup blur", ".AmountPaid", function () {
+            var amountpaid = parseFloat($('.AmountPaid').val());
+            var totalAmount = parseFloat($('.amount').val());
+            $('.BalanceDue').val(totalAmount - amountpaid);
+
+
+        });
 
 
     </script>
     <script>
         $('.amount').on(function () {
             var totalAmount = 0;
-           
+
             $('.amount').each(function () {
                 var inputval = $(this).val();
                 if ($.isNumeric(inputval)) {
@@ -262,9 +327,9 @@
             });
 
             $('.totalamount').val(totalAmount);
-        });  
+        });
     </script>
-    
+
 
 }
 

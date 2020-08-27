@@ -26,7 +26,7 @@ namespace Inventory_Management_Systems.Models
 
 
         [Display(Name = "Price ")]
-        public double  price { get; set; }
+        public decimal price { get; set; }
 
         [Display(Name = "Discount ")]
         public double discount { get; set; }
@@ -61,8 +61,8 @@ namespace Inventory_Management_Systems.Models
         [ForeignKey("itemName ")]
         public virtual tblItem TblItem { get; set; }
 
-        [ForeignKey("ItemUnit")]
-        public virtual tblItemUnit TblItemUnit { get; set; }
+        //[ForeignKey("ItemUnit")]
+        //public virtual tblItemUnit TblItemUnit { get; set; }
 
 
 

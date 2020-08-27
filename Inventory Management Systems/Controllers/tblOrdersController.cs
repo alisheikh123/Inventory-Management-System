@@ -14,10 +14,58 @@ namespace Inventory_Management_Systems.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public ActionResult getListItem()
+        {
+            var items = db.tblItems.Where(x => x.itemId > 0).Select(x => new
+            {
+                itemid = x.itemId,
+                itemNamw = x.itemName
+
+
+            }).ToList();
+
+         
+
+                return Json(items, JsonRequestBehavior.AllowGet);
+            }
+
+
+
+
+        
+        public ActionResult GetItem(int id)
+        {
+           
+            var items = from m in db.tblItems
+                        select m;
+
+            if (id > 0)
+            {
+                var itemPrice = items.Where(x => x.itemId.Equals(id)).Select(x => new
+                {
+                   
+                    price = x.sale_Price,
+                    unit = x.UnitId
+
+                }).FirstOrDefault();
+
+
+                return Json(itemPrice, JsonRequestBehavior.AllowGet);
+            }
+
+
+
+
+            return View();
+
+        }
+
+
+
         // GET: tblOrders
         public ActionResult Index()
         {
-            var tblOrders = db.tblOrders.Include(t => t.TblItem).Include(t => t.TblItemUnit);
+            var tblOrders = db.tblOrders.Include(t => t.TblItem)/*.Include(t => t.TblItemUnit)*/;
             return View(tblOrders.ToList());
         }
 

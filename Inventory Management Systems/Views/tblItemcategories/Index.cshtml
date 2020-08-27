@@ -7,7 +7,9 @@
 <h4 style="margin-top:50px;">All Products Category </h4>
 
 <p>
-    @Html.ActionLink("Create New", "Create", "", new { @class="btn btn-success btn-xs"})
+
+    <a href="@Url.Action("Create","tblItemcategories")" class="btn btn-default btn-xs "><span class="fa fa-plus-circle"></span> Add New Category</a>
+    <a href="@Url.Action("UploadFileCategory","tblItemcategories")" class="btn btn-success btn-xs "><span class="fa fa-upload"></span> Upload</a>
 </p>
 <table class="table  table-bordered table-condensed table-hover table-striped"  >
     <tr>

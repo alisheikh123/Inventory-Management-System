@@ -40,6 +40,7 @@ namespace Inventory_Management_Systems.Models
 
         [Required(ErrorMessage = "*Required Sale Price")]
         [Display(Name = "Sale Price ")]
+        
         public decimal sale_Price { get; set; }
 
 

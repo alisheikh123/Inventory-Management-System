@@ -2,17 +2,101 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ExcelDataReader;
 using Inventory_Management_Systems.Models;
+using Inventory_Management_Systems.Models.Class;
 
 namespace Inventory_Management_Systems.Controllers
 {
     public class tblItemcategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+
+        public ActionResult UploadFileCategory() 
+        {
+            return View();
+        }
+
+        public void ImportCatRecord() 
+        {
+        
+        }
+
+        //Import Data of Category
+
+        //[HttpPost]
+        //public async Task<ActionResult> ImportCatRecord(HttpPostedFileBase importFile)
+        //{
+        //    if (importFile == null) return Json(new { Status = 0, Message = "No File Selected" });
+
+        //    try
+        //    {
+        //        var fileData = GetDataFromCSVFile(importFile.InputStream);
+
+        //        var dtEmployee = fileData.ToDataTable();
+        //        var tblEmployeeParameter = new SqlParameter("tblEmployeeTableType", SqlDbType.Structured)
+        //        {
+        //            TypeName = "dbo.tblTypeEmployee",
+        //            Value = dtEmployee
+        //        };
+        //        await db.Database.ExecuteSqlCommandAsync("EXEC spBulkImportEmployee @tblEmployeeTableType", tblEmployeeParameter);
+        //        return Json(new { Status = 1, Message = "File Imported Successfully " });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { Status = 0, Message = ex.Message });
+        //    }
+        //}
+
+        //Get Data From CSV File Of TblCategory
+
+        private List<tblCategoryClass> GetDataFromCSVFile(Stream stream)
+        {
+            var categoryList = new List<tblCategoryClass>();
+            try
+            {
+                using (var reader = ExcelReaderFactory.CreateCsvReader(stream))
+                {
+                    var dataSet = reader.AsDataSet(new ExcelDataSetConfiguration
+                    {
+                        ConfigureDataTable = _ => new ExcelDataTableConfiguration
+                        {
+                            UseHeaderRow = true // To set First Row As Column Names  
+                        }
+                    });
+
+                    if (dataSet.Tables.Count > 0)
+                    {
+                        var dataTable = dataSet.Tables[0];
+                        foreach (DataRow objDataRow in dataTable.Rows)
+                        {
+                            if (objDataRow.ItemArray.All(x => string.IsNullOrEmpty(x?.ToString()))) continue;
+                            categoryList.Add(new tblCategoryClass()
+                            {
+                                Id = Convert.ToInt32(objDataRow["ID"].ToString()),
+                                CategoryName = objDataRow["Name"].ToString(),
+                              
+                            });
+                        }
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return categoryList;
+        }
 
         // GET: tblItemcategories
         public ActionResult Index()
