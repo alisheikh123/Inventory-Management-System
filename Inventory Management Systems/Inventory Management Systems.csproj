@@ -218,21 +218,31 @@
     <Compile Include="Migrations\202005020903104_12.designer.cs">
       <DependentUpon>202005020903104_12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008271355588_additem.cs" />
+    <Compile Include="Migrations\202008271355588_additem.designer.cs">
+      <DependentUpon>202008271355588_additem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008271607353_additemk.cs" />
+    <Compile Include="Migrations\202008271607353_additemk.designer.cs">
+      <DependentUpon>202008271607353_additemk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Class\Extension.cs" />
     <Compile Include="Models\Class\GetItem.cs" />
     <Compile Include="Models\Class\Item.cs" />
     <Compile Include="Models\Class\tblCategoryClass.cs" />
+    <Compile Include="Models\Class\tblItemClass.cs" />
     <Compile Include="Models\tblCompany.cs" />
     <Compile Include="Models\tblCustomer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\tblItem.cs" />
     <Compile Include="Models\tblOrder.cs" />
     <Compile Include="Models\tblAccount.cs" />
     <Compile Include="Models\tblAccountHead.cs" />
     <Compile Include="Models\tblInvoice.cs" />
     <Compile Include="Models\tblInvoiceDetail.cs" />
-    <Compile Include="Models\tblItem.cs" />
     <Compile Include="Models\tblItemUnit.cs" />
     <Compile Include="Models\tblItemcategory.cs" />
     <Compile Include="Models\tblVoucher.cs" />
@@ -9492,11 +9502,6 @@
     <Content Include="Views\tblCustomers\Details.cshtml" />
     <Content Include="Views\tblCustomers\Edit.cshtml" />
     <Content Include="Views\tblCustomers\Index.cshtml" />
-    <Content Include="Views\tblItems\Create.cshtml" />
-    <Content Include="Views\tblItems\Delete.cshtml" />
-    <Content Include="Views\tblItems\Details.cshtml" />
-    <Content Include="Views\tblItems\Edit.cshtml" />
-    <Content Include="Views\tblItems\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\tblOrders\Create.cshtml" />
     <Content Include="Views\tblOrders\Delete.cshtml" />
@@ -9517,6 +9522,12 @@
     <Content Include="Views\tblItemcategories\UploadFileCategory.cshtml" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.5.1.min.map" />
+    <Content Include="Views\tblItems\Create.cshtml" />
+    <Content Include="Views\tblItems\Delete.cshtml" />
+    <Content Include="Views\tblItems\Details.cshtml" />
+    <Content Include="Views\tblItems\Edit.cshtml" />
+    <Content Include="Views\tblItems\Index.cshtml" />
+    <Content Include="Views\tblItems\uploadItemFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -9546,6 +9557,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005020903104_12.resx">
       <DependentUpon>202005020903104_12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008271355588_additem.resx">
+      <DependentUpon>202008271355588_additem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008271607353_additemk.resx">
+      <DependentUpon>202008271607353_additemk.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\InvoiceReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

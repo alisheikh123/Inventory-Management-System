@@ -25,36 +25,33 @@ namespace Inventory_Management_Systems.Controllers
             return View();
         }
 
-        public void ImportCatRecord() 
-        {
         
-        }
 
         //Import Data of Category
 
-        //[HttpPost]
-        //public async Task<ActionResult> ImportCatRecord(HttpPostedFileBase importFile)
-        //{
-        //    if (importFile == null) return Json(new { Status = 0, Message = "No File Selected" });
+        [HttpPost]
+        public async Task<ActionResult> ImportCatRecord(HttpPostedFileBase importFile)
+        {
+            if (importFile == null) return Json(new { Status = 0, Message = "No File Selected" });
 
-        //    try
-        //    {
-        //        var fileData = GetDataFromCSVFile(importFile.InputStream);
+            try
+            {
+                var fileData = GetDataFromCSVFile(importFile.InputStream);
 
-        //        var dtEmployee = fileData.ToDataTable();
-        //        var tblEmployeeParameter = new SqlParameter("tblEmployeeTableType", SqlDbType.Structured)
-        //        {
-        //            TypeName = "dbo.tblTypeEmployee",
-        //            Value = dtEmployee
-        //        };
-        //        await db.Database.ExecuteSqlCommandAsync("EXEC spBulkImportEmployee @tblEmployeeTableType", tblEmployeeParameter);
-        //        return Json(new { Status = 1, Message = "File Imported Successfully " });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new { Status = 0, Message = ex.Message });
-        //    }
-        //}
+                var dttblcategory = fileData.ToDataTable();
+                var dttblcategoryParameter = new SqlParameter("tblCategoryvar", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.tblTypeCategory",
+                    Value = dttblcategory
+                };
+                await db.Database.ExecuteSqlCommandAsync("EXEC SPBulkAddCategory @tblCategoryvar", dttblcategoryParameter);
+                return Json(new { Status = 1, Message = "File Imported Successfully " });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Status = 0, Message = ex.Message });
+            }
+        }
 
         //Get Data From CSV File Of TblCategory
 

@@ -15,35 +15,41 @@ namespace Inventory_Management_Systems.Models
 
 
         [Required(ErrorMessage = "*Required Category Name")]
-        [Display(Name = "Category Name ")]
+        [Display(Name = "Category Name :")]
         public int catId { get; set; }
 
         [Required(ErrorMessage = "*Required unit")]
-        [Display(Name = "Unit ")]
+        [Display(Name = "Unit:")]
         public int UnitId { get; set; }
 
-        [Display(Name = "Item  Code")]
+        [Display(Name = "Item  Code:")]
         [Required(ErrorMessage = "*Required Item Code ")]
         public string ItemCode { get; set; }
 
-        [Required(ErrorMessage = "*Required Item Name")]
-        [Display(Name = "Item Name ")]
+        [Required(ErrorMessage = "*Required ItemName")]
+        [Display(Name = "Item Name :")]
         public string itemName { get; set; }
 
         [Required(ErrorMessage = "*Required Quantity")]
-        [Display(Name = "Quantity ")]
+        [Display(Name = "Quantity :")]
         public int Quantity { get; set; }
 
         [Required(ErrorMessage = "*Required Purchase Price")]
-        [Display(Name = "Purchase Price ")]
+        [Display(Name = "Purchase Price :")]
         public decimal purchase_Price { get; set; }
 
         [Required(ErrorMessage = "*Required Sale Price")]
-        [Display(Name = "Sale Price ")]
-        
+        [Display(Name = "Sale Price :")]
         public decimal sale_Price { get; set; }
 
 
+        
+        [Display(Name = "Percentage :")]
+        public int Percentage { get; set; }
+
+      
+        [Display(Name = "Alert :")]
+        public int Alert { get; set; }
 
 
 
